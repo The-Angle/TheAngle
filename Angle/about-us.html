@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Tabs Navigation */
+        .tabs-section {
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--accent);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        /* About Page Styles */
+        .about-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--accent-light) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        
+        .about-hero .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .about-section {
+            padding: 60px 0;
+        }
+        
+        .about-section:nth-child(even) {
+            background-color: var(--secondary);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+        
+        .about-text strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: var(--primary);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+        
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .service-card li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text);
+        }
+        
+        .service-card li::before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .internship-section {
+            background-color: var(--primary);
+            padding: 60px 0;
+        }
+        
+        .disciplines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .discipline-card {
+            background-color: var(--secondary);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .discipline-card h4 {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .discipline-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .culture-highlights {
+            background-color: var(--accent);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .culture-highlights h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .culture-item {
+            text-align: left;
+        }
+        
+        .culture-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .culture-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .connect-section {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .connect-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .connect-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .platform-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-link {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .platform-link:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            color: #cccccc;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .about-hero h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            
+            .disciplines-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .culture-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .connect-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-container {
+                padding: 0 10px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .culture-highlights {
+                padding: 30px 20px;
+            }
+            
+            .platform-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html" class="active">About Us</a></li>
+                    <li><a href="Elections.html">Elections</a></li>
+                    <li><a href="Perspectives.html">Perspectives</a></li>
+                    <li><a href="Podcast.html">Podcast</a></li>
+                    
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+   
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About The Angle</h1>
+            <p class="subtitle">African Perspectives on Digital Culture | Creativity | Media | Money | Governance</p>
+        </div>
+    </section>
+
+    <!-- About Main Section -->
+    <section class="about-section">
+        <div class="container about-content">
+            <h2 class="section-title">Who We Are</h2>
+            <div class="about-text">
+                <strong>The Angle</strong> is an African digital media and storytelling platform that explores the intersection of digital culture, creativity, media, money and governance.
+            </div>
+            <div class="about-text">
+                Founded by <strong>Scott Peter Smith</strong> and <strong>Stanley Moloto</strong>, The Angle is rooted in the belief that the most compelling stories about Africa's digital future are already here—on the ground, being built by artists, technologists, entrepreneurs, and civic thinkers.
+            </div>
+            <div class="about-text">
+                At its heart, The Angle is a <strong>podcast-first platform</strong>, supported by visual stories, articles, newsletters, and event-based activations. It is also a publishing lab—experimenting with multi-modal content strategies that make African perspectives more visible, shareable, and financially sustainable.
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">What We Do</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Podcasting & Longform Interviews</h3>
+                    <ul>
+                        <li>The Angle Podcast features deep-dive conversations with African founders, creatives, thinkers, and technologists</li>
+                        <li>Content is repackaged across YouTube, Spotify, Substack, and social platforms for layered engagement</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Multi-Modal Publishing & Documentation</h3>
+                    <ul>
+                        <li>From raw interviews to refined narratives, The Angle builds workflows that extend a single story across multiple formats</li>
+                        <li>Podcast episodes generate not just one product but up to five pieces of audience-specific content</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Platform Strategy for Public Impact</h3>
+                    <ul>
+                        <li>Our goal is not just reach but relevance: putting the right content in front of the right audience, on the right platform</li>
+                        <li>Collaborations include partners in civic tech, creative economies, XR/VR, digital policy, and independent journalism</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Creative Consultancy & Media Innovation</h3>
+                    <ul>
+                        <li>The Angle advises cultural and innovation hubs on digital media strategy, storytelling, and documentation</li>
+                        <li>Clients and collaborators include Tshimologong Precinct, FakUgesi Festival, Wits University, and others</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Opportunities Section -->
+    <section class="internship-section">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Internship Opportunities</h2>
+                <div class="about-text">
+                    The Angle is seeking sharp, curious, and self-directed interns who want to work at the intersection of media, culture, and digital innovation in Africa. We offer a hands-on, cross-disciplinary experience in a fast-moving editorial lab where storytelling meets strategy.
+                </div>
+                
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--dark); margin: 40px 0 20px; text-align: center;">Disciplines & Roles</h3>
+                
+                <div class="disciplines-grid">
+                    <div class="discipline-card">
+                        <h4>Journalism & Research</h4>
+                        <p>Interview prep, fact-checking, research briefs, podcast scripting, article development</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Audio Production</h4>
+                        <p>Podcast editing, sound mixing, mastering, episode structuring</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Video & Content Editing</h4>
+                        <p>Editing short-form cuts for social, YouTube clips, captioning, reels, animation</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Social Media Strategy</h4>
+                        <p>Audience engagement, platform-specific content formatting, campaign scheduling</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Editorial Strategy & Substack</h4>
+                        <p>Writing show notes, creating episode summaries, formatting newsletter releases</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Creative Writing & Scripting</h4>
+                        <p>VO scriptwriting, teaser lines, cold opens, and narrative transitions</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Design & Visual Storytelling</h4>
+                        <p>YouTube thumbnails, social graphics, episode quote cards, typographic reels</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Audience Analytics</h4>
+                        <p>Performance tracking across platforms, helping identify content that resonates</p>
+                    </div>
+                    
+                    <div class="discipline-card">
+                        <h4>Multimedia Production</h4>
+                        <p>Support in creating rich, layered stories using text, image, audio, and video</p>
+                    </div>
+                </div>
+                
+                <div class="culture-highlights">
+                    <h3>Work Environment and Culture</h3>
+                    <div class="culture-grid">
+                        <div class="culture-item">
+                            <h4>Mentorship-Driven</h4>
+                            <p>Interns work closely with senior editors, producers, and creatives, gaining hands-on experience with meaningful deliverables</p>
+                        </div>
+                        
+                        <div class="culture-item">
+                            <h4>Lab Mindset</h4>
+                            <p>Expect experimentation. We're building workflows, not just publishing pipelines</p>
+                        </div>
+                        
+                        <div class="culture-item">
+                            <h4>Remote-Friendly</h4>
+                            <p>We support hybrid and remote work, with regular check-ins, editorial meetings, and collaborative tools</p>
+                        </div>
+                        
+                        <div class="culture-item">
+                            <h4>Portfolio-Ready Output</h4>
+                            <p>Interns will leave with real bylines, credits on podcast episodes, and tangible work to showcase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title" style="color: black;">Connect With Us</h2>
+            
+            <div class="connect-grid">
+                <div class="connect-card">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest insights on African digital culture, creativity, and innovation.</p>
+                    <div class="platform-links">
+                        <a href="https://theangleafrica.substack.com/?utm_source=global-search" class="platform-link" target="_blank">Subscribe to Newsletter</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Listen to Our Podcast</h3>
+                    <p>Available on all major podcast platforms</p>
+                    <div class="platform-links">
+                        <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-link" target="_blank">Spotify</a>
+                        <a href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" class="platform-link" target="_blank">YouTube</a>
+                        <a href="https://theangleafrica.substack.com/" class="platform-link" target="_blank">Substack</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected on social media</p>
+                    <div class="social-links">
+                        <a href="https://x.com/TheAngle_Afrika" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/theangle.afrika/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/the-angle-africa" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@the.angle.podcast" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/people/The-Angle-Africa/61569042767052/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 41 Juta Street, Braamfontein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                   
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="Elections.html">Elections</a></li>
+                        <li><a href="Perspectives.html">Perspectives</a></li>
+                        <li><a href="Podcast">Podcast</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <li><i class="fas fa-phone"></i><a href="#">+27 82 627 3911</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth <= 768) {
+                if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabText = tab.textContent.trim();
+                if (tabText === 'Home') {
+                    window.location.href = 'The Angle.html';
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

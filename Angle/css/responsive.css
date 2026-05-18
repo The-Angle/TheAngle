@@ -1,0 +1,196 @@
+:root {
+  --container-padding: 16px;
+}
+
+/* Make media scale correctly */
+html, body {
+  height: 100%;
+}
+
+/* Images and media should be fluid */
+img, picture, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Helpful grid utility */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Header/nav defaults */
+.mobile-menu-btn {
+  display: none;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make header compact */
+  .header-container {
+    gap: 12px;
+  }
+
+  /* Show mobile menu button and hide desktop nav by default */
+  .mobile-menu-btn {
+    display: block !important;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: var(--primary);
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    padding: 8px 0;
+  }
+
+  /* When nav is toggled open */
+  nav.open ul {
+    display: flex;
+  }
+
+  /* Ensure nav overlays content and is reachable */
+  nav {
+    position: relative;
+    z-index: 1500;
+  }
+
+  nav li {
+    margin-left: 0;
+  }
+
+  nav li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  .subscribe-hero {
+    padding: 60px 0;
+  }
+
+  .subscribe-hero h1 {
+    font-size: 34px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  /* Header actions layout on small screens */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-actions .subscribe-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .logo img {
+    height: 36px;
+  }
+}
+
+/* Small screens typography tweaks */
+@media (max-width: 420px) {
+  :root {
+    --container-padding: 12px;
+  }
+
+  .subscribe-hero h1 {
+    font-size: 28px;
+  }
+}
+
+/* Component-specific responsive tweaks */
+.subscription-container {
+  max-width: 600px;
+  padding: 40px 24px;
+}
+
+.benefits-list {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  .subscription-container {
+    padding: 28px 18px;
+    border-radius: 12px;
+    margin: 0 12px;
+  }
+
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+}
+
+/* Accessibility: increase hit area for mobile menu button */
+.mobile-menu-btn {
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Hide author images site-wide and collapse associated spacing */
+/* This prevents blank avatar gaps while leaving author names visible. */
+.author-avatar,
+.author-header img,
+.hero-author img,
+.author-section img {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.author-header .author-info,
+.hero-author {
+  margin-left: 0 !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+
+.author-card {
+  gap: 0 !important;
+}
+
+/* Hide footer social links site-wide (removed from footer visually)
+   Kept social links in other sections (connect cards) intact. */
+footer .footer-column .social-links {
+  display: none !important;
+}
+

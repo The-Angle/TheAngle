@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital pervasiveness and divisiveness: The role of African governments in enabling healthy digital futures | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Tabs Navigation */
+        .tabs-section {
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--accent);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .back-button i {
+            font-size: 12px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 75vh;
+            min-height: 600px;
+            background: linear-gradient(135deg, rgba(107, 39, 42, 0.9) 0%, rgba(18, 18, 18, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1573164713712-03790a178651?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .hero-category {
+            background-color: rgba(107, 39, 42, 0.9);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
+            display: inline-block;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 400;
+            opacity: 0.95;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .hero-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 25px !important;
+            }
+        }
+            /* Footer */
+            footer {
+                background-color: var(--dark);
+                color: white;
+                padding: 60px 0 30px;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+            .footer-column h3 {
+                font-size: 18px;
+                margin-bottom: 25px;
+                position: relative;
+                padding-bottom: 10px;
+                color: white;
+            }
+            .footer-column h3::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 40px;
+                height: 2px;
+                background-color: var(--accent);
+            }
+            .footer-links { list-style: none; }
+            .footer-links li { margin-bottom: 12px; display: flex; align-items: flex-start; }
+            .footer-links i { margin-right: 10px; color: var(--accent); width: 16px; margin-top: 3px; }
+            .footer-links a { color: #cccccc; transition: color 0.3s; }
+            .footer-links a:hover { color: white; }
+            .copyright {
+                text-align: center;
+                padding-top: 30px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: #999999;
+                font-size: 14px;
+            }
+
+            /* Responsive Footer */
+            @media (max-width: 1024px) {
+                .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 576px) {
+                .footer-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+        <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+               <section class="tabs-section">
+        <div class="container tabs-container">
+            <div class="tab"><a href="../index.html">Home</a></div>
+            <div class="tab"><a href="../about-us.html">About Us</a></div>
+            <div class="tab"><a href="../Elections.html">Elections</a></div>
+            <div class="tab"><a href="../Perspectives.html">Perspectives</a></div>
+            <div class="tab"><a href="../Podcast.html">Podcast</a></div>
+        </div>
+    </section>
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+ 
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+          
+            <h1 class="hero-title">Digital Pervasiveness and Divisiveness</h1>
+            <p class="hero-subtitle">The role of African governments in enabling healthy digital futures and bridging the digital divide</p>
+            <div class="hero-meta">
+                <div class="hero-author">
+                    <span><strong>Iman Bashir</strong></span>
+                </div>
+                <div class="hero-date">
+                    <i class="far fa-calendar"></i>
+                    <span>February 19, 2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-section" style="padding: 80px 0; background-color: var(--primary);">
+        <div class="article-container" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+            <a href="../Perspectives.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Perspectives
+            </a>
+            <div class="article-intro" style="font-size: 22px; line-height: 1.7; color: var(--text-light); margin-bottom: 40px; padding-bottom: 30px; border-bottom: 2px solid var(--border);">
+                In 2021, the African Digital Futures Project brought together 22 next-generation change-makers and African futurists to explore digital governance in Africa. Their mission: to envision Africa's digital future in 2050 and identify the role governments must play in creating healthy digital societies.
+            </div>
+            
+            <div class="article-content" style="font-size: 18px; line-height: 1.8; color: var(--text);">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">A Vision for a Digital African Future</h2>
+
+                <p>The <a href="#" style="color: var(--accent); text-decoration: underline;">African Digital Futures Project</a>, an initiative and practice arm of the School of International Futures (SOIF), brought together a group of 22 next-generation change-makers and African futurists to explore digital governance in Africa.</p>
+
+                <p>The idea was simple. Use a series of stories or visions to spark conversations about the fourth industrial revolution (4IR) and digital technology being developed and used by African communities with a focus on digital privacy, identity, inclusion, security and artificial intelligence.</p>
+
+                <blockquote style="border-left: 4px solid var(--accent); padding: 25px; margin: 40px 0; background-color: var(--secondary); font-style: italic; font-size: 20px; line-height: 1.6;">
+                    "4IR is the fusion of the digital, biological, and physical worlds, as well as the growing utilisation of new technologies such as artificial intelligence, cloud computing, robotics, 3D printing, the Internet of Things (IoT) and advanced wireless technologies."
+                </blockquote>
+
+                <p>According to the <a href="#" style="color: var(--accent); text-decoration: underline;">International Telecommunication Union (ITU)</a>, Africa has a significantly low rate of internet usage compared to other regions. There is also a noticeable gender gap in mobile phone ownership, as well as the lowest rates of internet and mobile broadband penetration when compared to other continents. These rates stand at approximately 28% and 34% respectively.</p>
+
+                <p>As a result, many foreign developed digital innovations proliferate but fail to meet African needs. This disparity brings into sharp focus the need for homegrown digital innovations.</p>
+
+                <p>The group was divided into three teams representing Kenya, Nigeria, and Pan-Africa who then produced <a href="#" style="color: var(--accent); text-decoration: underline;">11 visions and stories</a>. They attempted to describe what healthy digital societies would look like across various spheres to help different stakeholders like governments, technologists, legislators and individuals plan for a digital Africa.</p>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">What the Stories Revealed</h2>
+
+                <p>A <a href="#" style="color: var(--accent); text-decoration: underline;">summary of the insights</a> from the project revealed a singular desire for African cohesion in a digital world. Although, each cohort prioritised different concerns within that overarching theme.</p>
+
+                <p>The Kenyans looked at technology and climate change, the Nigerians were concerned about technology in direct democracy while the Pan-African contingent were occupied by the role of technology in emotional and social experience. Collectively however, six areas of priority emerged:</p>
+
+                <div style="background: var(--secondary); padding: 30px; border-radius: 8px; margin: 30px 0;">
+                    <ol style="line-height: 2; font-size: 18px;">
+                        <li>Data is a collective resource for the public good.</li>
+                        <li>Data should facilitate government accountability, transparency and direct democracy.</li>
+                        <li>Technology should add to rather than extract from nature and the environment.</li>
+                        <li>Technological progress should not oppose African languages, practices, cultures and traditions.</li>
+                        <li>African innovation should bridge the digital divide and pave the way for data diversity and inclusion in Africa.</li>
+                        <li>African voices need to shape the global digital conversation.</li>
+                    </ol>
+                </div>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">What This Means for Digital Transformation</h2>
+
+                <p>Bashir and Oyewale, along with other members of the African Futures team were able to distil the insights into a few key areas that governments, technologists and legislators need to focus on:</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--accent); margin: 30px 0 15px 0;">Data Needs to be Governed</h3>
+                <p>Data is collected and abused by governments and private players with impunity. Without proper regulation citizens' have no way to own and protect their data.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--accent); margin: 30px 0 15px 0;">Technology Without Education Impedes Progress</h3>
+                <p>Citizens mistrust and resist progress when governments adopt new technologies without educating them on the opportunities, benefits and risks.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--accent); margin: 30px 0 15px 0;">Legislators Need to Know More</h3>
+                <p>Policy formulation is weak in Africa. Local governments rely heavily on global north templates and are often adopted without thought due to a lack of technical knowledge within governments.</p>
+
+                <blockquote style="border-left: 4px solid var(--accent); padding: 25px; margin: 40px 0; background-color: var(--secondary); font-style: italic; font-size: 20px; line-height: 1.6;">
+                    "Part of securing a healthy digital future is the need to sensitise both the public and governments to the issues that affect them at a national level. The idea of data as a public good must be promoted at multiple levels."
+                </blockquote>
+
+                <p>To the extent that global tech companies and political leaders diverge from African societal aspirations, digital dissidents will innovate to disrupt them. Governments need to engage or face losing their power.</p>
+
+                <p>Bashir and Oyewale's paper on the Africa Futures Project demonstrates that the journey has already begun towards a healthy digital future. However, there is still a way to go before any of the visions produced by the 22 futurists can be realised.</p>
+
+                <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border); font-style: italic; color: var(--text-light);">
+                    <p><strong>Iman Bashir</strong> is a researcher and contributor to The Angle Africa focusing on digital governance and African technology futures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                  
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about-us.html">About Us</a></li>
+                        <li><a href="../Elections.html">Elections</a></li>
+                        <li><a href="../Perspectives.html">Perspectives</a></li>
+                        <li><a href="../Podcast.html">Podcast</a></li>
+                 
+                    </ul>
+                </div>
+                
+                
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <li><i class="fas fa-phone"></i><a href="#">+27 82 627 3911</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

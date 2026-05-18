@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elections in a Digital Africa – 2024 | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 75vh;
+            min-height: 600px;
+            background: linear-gradient(135deg, rgba(107, 39, 42, 0.9) 0%, rgba(18, 18, 18, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .hero-category {
+            background-color: rgba(107, 39, 42, 0.9);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
+            display: inline-block;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 400;
+            opacity: 0.95;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .hero-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-author img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Article Content */
+        .article-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+        }
+        
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .article-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 50px 0 25px 0;
+            line-height: 1.3;
+        }
+        
+        .article-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 40px 0 20px 0;
+            line-height: 1.4;
+        }
+        
+        .article-content p {
+            margin-bottom: 25px;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            margin: 40px 0;
+            background-color: var(--secondary);
+            font-style: italic;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 25px 0;
+            padding-left: 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .article-intro {
+            font-size: 22px;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .highlight-text {
+            background: linear-gradient(120deg, rgba(107, 39, 42, 0.1) 0%, rgba(107, 39, 42, 0.2) 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Expert Opinions Section */
+        .expert-opinions {
+            background-color: var(--secondary);
+            padding: 80px 0;
+        }
+        
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .expert-card {
+            background-color: var(--primary);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .expert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .expert-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .expert-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        .expert-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        /* Podcast Section */
+        .podcast-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+            text-align: center;
+        }
+        
+        .podcast-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .podcast-platforms {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .platform-btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        
+        .platform-btn i {
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .expert-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .platform-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .podcast-platforms {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+   <header>
+        <div class="container header-container">
+            <div class="logo"><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../about-us.html">About Us</a></li>
+                    <li><a href="../Elections.html" class="active">Elections</a></li>
+                    <li><a href="../Perspectives.html">Perspectives</a></li>
+                    <li><a href="../Podcast.html">Podcast</a></li>
+                  
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+
+            <h1 class="hero-title">Elections in a Digital Africa – 2024</h1>
+            <p class="hero-subtitle">
+                As over 17 African countries gear up for elections in 2024, we explore how digitalisation will shape democracy across the continent.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-author">
+                    
+                    <span>Stanley Moloto</span>
+                </div>
+                <div class="hero-date">
+                    <i class="fas fa-calendar"></i>
+                    <span>April 9, 2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-section">
+        <div class="container">
+            <div class="article-container">
+                <div class="article-content">
+                    <div class="article-intro">
+                        As over 17 African countries gear up for elections in 2024, The Digital Afrikan, in partnership with The Mail & Guardian, Tayarisha Centre for Digital Excellence and The Institute of Election Management Services in Africa (IEMSA) are launching a continental series of op-eds and podcasts on whether digitalisation will benefit democracy in Africa.
+                    </div>
+
+                    <p>
+                        Academics, experts and researchers from across the continent will present opinions derived from their own research on how elections are impacted by digital technologies.
+                    </p>
+
+                    <p>
+                        These op-eds will be augmented by continuous coverage of African elections with a keen focus on:
+                    </p>
+
+                    <ul>
+                        <li><span class="highlight-text">Misinformation and disinformation</span></li>
+                        <li><span class="highlight-text">Gender biases in electoral processes</span></li>
+                        <li><span class="highlight-text">The digital divide and how it excludes large parts of the electorate</span></li>
+                        <li><span class="highlight-text">Digital governance that undermines democracy during elections</span></li>
+                        <li><span class="highlight-text">The power of digital citizenship in strengthening democracy</span></li>
+                    </ul>
+
+                    <blockquote>
+                        "The Digital Afrikan's Youth Desk called Frame of Reference (F.O.R) has already kicked off a social media series on TikTok to engage young voters across the continent on how they can affect and influence democratic outcomes in their countries through elections."
+                    </blockquote>
+
+                    <h2>African Democracy Superbowl</h2>
+                    
+                    <p>
+                        Business Insider Africa estimates that 20 African countries will go to the polls in 2024 to choose national and regional leaders in what some observers have termed a 'Democracy Super Bowl.' Supporters of good governance are keen to see how the recent technological boom experienced in 2021 has impacted democracy on the continent.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Opinions -->
+    <section class="expert-opinions">
+        <div class="container">
+            <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 30px;">Expert Opinions</h2>
+            <p style="text-align: center; font-size: 18px; color: var(--text-light); max-width: 600px; margin: 0 auto;">The election series features five op-eds from academics and experts on digitalisation and governance, each augmented by detailed podcast discussions.</p>
+            
+            <div class="expert-grid">
+                <div class="expert-card">
+                    <h3>Is Africa ready for electronic voting?</h3>
+                    <p>Professor Colin Thakur, NRF-rated researcher and Research Chair in Digitalisation at Durban University of Technology, looks at the recent electoral change to include independent candidates and whether a switch to electronic voting is required.</p>
+                    <div class="expert-author">Prof. Colin Thakur</div>
+                </div>
+                
+                <div class="expert-card">
+                    <h3>Do politicians weaken democracy through social media?</h3>
+                    <p>Blessmore Nhikiti, a researcher based at Wilhelms-Westfalische University of Münster, Germany, interrogates how losing candidates use social media to influence their supporters not to accept election results.</p>
+                    <div class="expert-author">Blessmore Nhikiti</div>
+                </div>
+                
+                <div class="expert-card">
+                    <h3>Are African politicians playing their part in curbing disinformation?</h3>
+                    <p>Tom Mboya, a governance consultant based in Kenya, considers whether digital platforms represent a resource or a threat to democracy in Africa in an era of disinformation and misinformation.</p>
+                    <div class="expert-author">Tom Mboya</div>
+                </div>
+                
+                <div class="expert-card">
+                    <h3>How a lack of ICT skills is hampering election management</h3>
+                    <p>Japheth Ondiek and Gedion Onyango present insights on techno-policy implications of adopting electoral technology systems in Kenya and the barriers to implementing digital solutions.</p>
+                    <div class="expert-author">Japheth Ondiek & Gedion Onyango</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section class="podcast-section">
+        <div class="container">
+            <div class="podcast-content">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 30px;">The Elections Series Podcast</h2>
+                <p style="font-size: 18px; color: var(--text-light);">
+                    Hosted by Sinethemba Mtshali, editor of Frame of Reference and Maxwell Maseko, The Elections Series podcast will supplement the op-eds and stories published in the Mail & Guardian. Authors and experts will discuss the implications of their pieces on democracy in Africa.
+                </p>
+                
+                <div class="podcast-platforms">
+                    <a href="#" class="platform-btn">
+                        <i class="fab fa-spotify"></i>
+                        <span>Listen on Spotify</span>
+                    </a>
+                    <a href="#" class="platform-btn">
+                        <i class="fab fa-youtube"></i>
+                        <span>Watch on YouTube</span>
+                    </a>
+                    <a href="#" class="platform-btn">
+                        <i class="fas fa-podcast"></i>
+                        <span>Subscribe on Substack</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                 
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about-us.html">About Us</a></li>
+                        <li><a href="../Elections.html">Elections</a></li>
+                        <li><a href="../Perspectives.html">Perspectives</a></li>
+                        <li><a href="../Perspectives.html#podcast">Podcast</a></li>
+                        <li><a href="../Subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <li><i class="fas fa-phone"></i><a href="#">+27 82 627 3911</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="js/mobile.js"></script>
+</body>
+</html>
