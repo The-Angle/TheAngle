@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elections | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .elections-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--accent-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .elections-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .elections-hero .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .elections-content {
+            padding: 60px 0;
+            background-color: var(--secondary);
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            background-color: var(--primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .article-image {
+            height: 220px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .article-content {
+            padding: 30px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+        
+        .article-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .article-date {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--accent-light);
+            border-bottom-color: var(--accent-light);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* Connect Section */
+        .connect-section {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .connect-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .connect-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .platform-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-link {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .platform-link:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            color: #cccccc;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .elections-hero h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .connect-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-content {
+                padding: 20px;
+            }
+            
+            .article-title {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-container {
+                padding: 0 10px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .platform-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Elections.html" class="active">Elections</a></li>
+                    <li><a href="Perspectives.html">Perspectives</a></li>
+                    <li><a href="Articles.html">Articles</a></li>
+                    <li><a href="Podcast.html">Podcast</a></li>
+                    
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+   
+
+    <!-- Elections Hero Section -->
+    <section class="elections-hero">
+        <div class="container">
+            <h1>Elections</h1>
+            <p class="subtitle">Comprehensive coverage of African elections, digital democracy, and governance in the digital age</p>
+        </div>
+    </section>
+
+    <!-- Elections Content Section -->
+    <section class="elections-content">
+        <div class="container">
+            
+            <p class="section-subtitle">Explore our in-depth analysis of African elections, digital voting systems, and the intersection of technology and democracy across the continent.</p>
+            
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Elections</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Do politicians deliberately sabotage ICT adoption in African elections?</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Gedion Onyango</span>
+                            <span class="article-date">Sep 2, 2024</span>
+                        </div>
+                        <p class="article-excerpt">In recent years, there has been a surge in the adoption of Information and Communication Technology (ICT) tools in global elections, revolutionizing how we conduct democratic processes.</p>
+                        <a href="Elections/Politicians.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1559301403-669a0ad7c2d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Elections</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">E-voting versus paper ballots</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Prof. Colin Thakur</span>
+                            <span class="article-date">May 19, 2024</span>
+                        </div>
+                        <p class="article-excerpt">South Africa's paper-based elections to date, have largely been free-and-fair. The absence of Electoral Court cases regarding ballot production or integrity speaks to this success.</p>
+                        <a href="Elections/E-Voting.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Elections</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Are African elections manipulated by foreign disinformation campaigns?</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Tom Mboya</span>
+                            <span class="article-date">Apr 17, 2024</span>
+                        </div>
+                        <p class="article-excerpt">2024 is touted as the biggest election year in history. More than 80 national elections are scheduled to take place, affecting the lives of billions of people globally.</p>
+                        <a href="Elections/African.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 4 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Elections</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Is social media weakening Africa's democracy?</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Blessmore Nhikiti</span>
+                            <span class="article-date">Apr 17, 2024</span>
+                        </div>
+                        <p class="article-excerpt">The political tradition has always been to campaign for votes through a combination of nationwide rallies, media coverage and papering neighborhoods with campaign materials.</p>
+                        <a href="Elections/Social.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 5 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Elections</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Elections in a Digital Africa – 2024</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Stanley Moloto</span>
+                            <span class="article-date">Apr 9, 2024</span>
+                        </div>
+                        <p class="article-excerpt">As over 17 African countries gear up for elections in 2024, The Digital Afrikan, in partnership with The Mail & Guardian, Tayarisha Poe and others examine the digital landscape.</p>
+                        <a href="Elections/Digital.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 6 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1551135049-8a33b2fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Elections</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Is South Africa ready for electronic voting?</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Maxwell Maseko</span>
+                            <span class="article-date">Apr 9, 2024</span>
+                        </div>
+                        <p class="article-excerpt">At least nineteen African countries will go to the polls in 2024 to choose national and regional leaders. Some observers argue it's time to embrace digital voting technologies.</p>
+                        <a href="Elections/Electronicvoting.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title" style="color: black;">Connect With Us</h2>
+            
+            <div class="connect-grid">
+                <div class="connect-card">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest insights on African digital culture, creativity, and innovation.</p>
+                    <div class="platform-links">
+                        <a href="https://theangleafrica.substack.com/?utm_source=global-search" class="platform-link" target="_blank">Subscribe to Newsletter</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Listen to Our Podcast</h3>
+                    <p>Available on all major podcast platforms</p>
+                    <div class="platform-links">
+                        <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-link" target="_blank">Spotify</a>
+                        <a href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" class="platform-link" target="_blank">YouTube</a>
+                        <a href="https://theangleafrica.substack.com/" class="platform-link" target="_blank">Substack</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected on social media</p>
+                    <div class="social-links">
+                        <a href="https://x.com/TheAngle_Afrika" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/theangle.afrika/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/the-angle-africa" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@the.angle.podcast" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/people/The-Angle-Africa/61569042767052/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 41 Juta Street, Braamfontein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="Elections.html">Elections</a></li>
+                        <li><a href="Perspectives.html">Perspectives</a></li>
+                        <li><a href="Articles.html">Articles</a></li>
+                    <li><a href="Podcast.html">Podcast</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth <= 768) {
+                if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabText = tab.textContent.trim();
+                if (tabText === 'Home') {
+                    window.location.href = 'index.html';
+                } else if (tabText === 'About Us') {
+                    window.location.href = 'about-us.html';
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,1161 @@
+:root {
+  --container-padding: 16px;
+}
+
+/* Make media scale correctly */
+html, body {
+  height: 100%;
+}
+
+/* Images and media should be fluid */
+img, picture, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Helpful grid utility */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Header/nav defaults */
+.mobile-menu-btn {
+  display: none;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make header compact */
+  .header-container {
+    gap: 12px;
+  }
+
+  /* Show mobile menu button and hide desktop nav by default */
+  .mobile-menu-btn {
+    display: block !important;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: var(--primary);
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    padding: 8px 0;
+  }
+
+  /* When nav is toggled open */
+  nav.open ul {
+    display: flex;
+  }
+
+  /* Ensure nav overlays content and is reachable */
+  nav {
+    position: relative;
+    z-index: 1500;
+  }
+
+  nav li {
+    margin-left: 0;
+  }
+
+  nav li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  .subscribe-hero {
+    padding: 60px 0;
+  }
+
+  .subscribe-hero h1 {
+    font-size: 34px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  /* Header actions layout on small screens */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-actions .subscribe-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .logo img {
+    height: 36px;
+  }
+}
+
+/* Small screens typography tweaks */
+@media (max-width: 420px) {
+  :root {
+    --container-padding: 12px;
+  }
+
+  .subscribe-hero h1 {
+    font-size: 28px;
+  }
+}
+
+/* Component-specific responsive tweaks */
+.subscription-container {
+  max-width: 600px;
+  padding: 40px 24px;
+}
+
+.benefits-list {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  .subscription-container {
+    padding: 28px 18px;
+    border-radius: 12px;
+    margin: 0 12px;
+  }
+
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+}
+
+/* Accessibility: increase hit area for mobile menu button */
+.mobile-menu-btn {
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Hide author images site-wide and collapse associated spacing */
+/* This prevents blank avatar gaps while leaving author names visible. */
+.author-avatar,
+.author-header img,
+.hero-author img,
+.author-section img {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.author-header .author-info,
+.hero-author {
+  margin-left: 0 !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+
+.author-card {
+  gap: 0 !important;
+}
+
+/* Hide footer social links site-wide (removed from footer visually)
+   Kept social links in other sections (connect cards) intact. */
+footer .footer-column .social-links {
+  display: none !important;
+}
+
+/* Non-home page visual polish */
+:root {
+  --angle-ink: #171313;
+  --angle-paper: #fffaf3;
+  --angle-mist: #f4eeee;
+  --angle-teal: #4b1f22;
+  --angle-gold: #d6a13f;
+  --angle-rose: #f8d9d2;
+  --angle-shadow: 0 24px 55px rgba(27, 18, 18, 0.12);
+  --angle-soft-shadow: 0 14px 34px rgba(27, 18, 18, 0.08);
+}
+
+body:has(.about-hero),
+body:has(.elections-hero),
+body:has(.perspectives-hero),
+body:has(.podcast-hero),
+body:has(.hero-section) {
+  background:
+    linear-gradient(90deg, rgba(107, 39, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(75, 31, 34, 0.08) 1px, transparent 1px),
+    var(--angle-paper);
+  background-size: 42px 42px;
+}
+
+body:has(.about-hero) header,
+body:has(.elections-hero) header,
+body:has(.perspectives-hero) header,
+body:has(.podcast-hero) header,
+body:has(.hero-section) header {
+  border-bottom: 1px solid rgba(107, 39, 42, 0.1);
+  box-shadow: 0 14px 34px rgba(18, 18, 18, 0.07);
+  backdrop-filter: blur(14px);
+}
+
+.about-hero,
+.elections-hero,
+.perspectives-hero,
+.podcast-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 74px !important;
+  background:
+    linear-gradient(135deg, rgba(23, 19, 19, 0.92) 0%, rgba(107, 39, 42, 0.9) 54%, rgba(75, 31, 34, 0.82) 100%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 15px) !important;
+  border-bottom: 7px solid var(--angle-gold);
+}
+
+.about-hero::after,
+.elections-hero::after,
+.perspectives-hero::after,
+.podcast-hero::after {
+  content: "";
+  position: absolute;
+  right: max(24px, 8vw);
+  bottom: -46px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: rotate(15deg);
+}
+
+.about-hero .container,
+.elections-hero .container,
+.perspectives-hero .container,
+.podcast-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero h1,
+.elections-hero h1,
+.perspectives-hero h1,
+.podcast-hero h1,
+.hero-section .hero-title {
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.about-hero .subtitle,
+.elections-hero .subtitle,
+.perspectives-hero .subtitle,
+.podcast-hero .subtitle,
+.hero-section .hero-subtitle,
+.elections-content .section-subtitle,
+.perspectives-content .section-subtitle,
+.podcast-content .section-subtitle {
+  text-wrap: pretty;
+}
+
+.elections-content,
+.perspectives-content,
+.podcast-content,
+.about-section,
+.internship-section,
+.article-section,
+.related-section,
+.author-section,
+.connect-section {
+  background-color: transparent !important;
+}
+
+.articles-grid,
+.episodes-grid,
+.services-grid,
+.disciplines-grid,
+.connect-grid,
+.related-grid {
+  align-items: stretch;
+}
+
+.article-card,
+.episode-card,
+.service-card,
+.discipline-card,
+.connect-card,
+.related-card,
+.author-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(107, 39, 42, 0.12) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 243, 0.98)) !important;
+  box-shadow: var(--angle-soft-shadow) !important;
+}
+
+.article-card,
+.episode-card,
+.service-card,
+.discipline-card,
+.connect-card,
+.related-card {
+  border-radius: 8px !important;
+}
+
+.article-card::before,
+.episode-card::before,
+.service-card::before,
+.discipline-card::before,
+.connect-card::before,
+.related-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent), var(--angle-gold), var(--angle-teal));
+  z-index: 2;
+}
+
+.article-card:hover,
+.episode-card:hover,
+.service-card:hover,
+.discipline-card:hover,
+.connect-card:hover,
+.related-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--angle-shadow) !important;
+}
+
+.article-image,
+.episode-image,
+.related-card img {
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.article-image,
+.episode-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.article-card .article-image::after,
+.episode-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(18, 18, 18, 0) 45%, rgba(18, 18, 18, 0.38) 100%);
+  pointer-events: none;
+}
+
+.article-category,
+.episode-category,
+.hero-category {
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, var(--accent), var(--angle-teal)) !important;
+  box-shadow: 0 10px 22px rgba(18, 18, 18, 0.16);
+}
+
+.article-content,
+.episode-content,
+.related-card-content,
+.service-card,
+.discipline-card,
+.connect-card {
+  isolation: isolate;
+}
+
+.article-title,
+.episode-title,
+.service-card h3,
+.connect-card h3,
+.related-card h3 {
+  text-wrap: balance;
+}
+
+.article-card .read-more,
+.listen-now,
+.platform-link,
+.platform-btn,
+.back-button {
+  border-radius: 999px !important;
+}
+
+.article-card .read-more,
+.back-button {
+  border-bottom: 0 !important;
+  border: 1px solid rgba(107, 39, 42, 0.18) !important;
+  padding: 9px 15px !important;
+  background-color: rgba(107, 39, 42, 0.06);
+}
+
+.article-card .read-more:hover,
+.back-button:hover,
+.platform-link:hover,
+.listen-now:hover,
+.platform-btn:hover {
+  transform: translateY(-2px);
+}
+
+.podcast-platforms {
+  gap: 14px !important;
+}
+
+.platform-btn {
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  backdrop-filter: blur(10px);
+}
+
+.listen-now,
+.platform-link {
+  background: linear-gradient(135deg, var(--accent), var(--angle-teal)) !important;
+  box-shadow: 0 12px 22px rgba(107, 39, 42, 0.18);
+}
+
+body:has(.about-hero) .section-title,
+body:has(.elections-hero) .section-title,
+body:has(.perspectives-hero) .section-title,
+body:has(.podcast-hero) .section-title,
+body:has(.hero-section) .section-title {
+  position: relative;
+  text-wrap: balance;
+}
+
+body:has(.about-hero) .section-title::after,
+body:has(.elections-hero) .section-title::after,
+body:has(.perspectives-hero) .section-title::after,
+body:has(.podcast-hero) .section-title::after,
+body:has(.hero-section) .section-title::after {
+  content: "";
+  display: block;
+  width: 74px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--angle-gold), var(--angle-teal));
+}
+
+.about-text {
+  max-width: 78ch;
+}
+
+.culture-highlights {
+  background:
+    linear-gradient(135deg, var(--accent) 0%, #432023 58%, var(--angle-teal) 100%) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--angle-shadow);
+}
+
+.culture-item {
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-section {
+  min-height: 560px !important;
+  border-bottom: 7px solid var(--angle-gold);
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 38px 38px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.article-container {
+  max-width: 860px !important;
+}
+
+.article-intro,
+.article-content blockquote,
+.article-content .pull {
+  border-left: 5px solid var(--angle-gold) !important;
+  border-radius: 0 8px 8px 0;
+  background:
+    linear-gradient(90deg, rgba(214, 161, 63, 0.16), rgba(75, 31, 34, 0.08)) !important;
+  box-shadow: 0 12px 26px rgba(18, 18, 18, 0.06);
+}
+
+.article-content p {
+  max-width: 72ch;
+}
+
+.article-content h2,
+.article-content h3 {
+  text-wrap: balance;
+}
+
+.article-content figure,
+.article-image {
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: var(--angle-soft-shadow) !important;
+}
+
+.article-content iframe {
+  border-radius: 8px;
+}
+
+.author-card {
+  border-radius: 8px !important;
+}
+
+.connect-card .social-links a {
+  box-shadow: 0 10px 20px rgba(107, 39, 42, 0.16);
+}
+
+@media (max-width: 768px) {
+  .about-hero,
+  .elections-hero,
+  .perspectives-hero,
+  .podcast-hero {
+    padding: 70px 0 54px !important;
+  }
+
+  .about-hero h1,
+  .elections-hero h1,
+  .perspectives-hero h1,
+  .podcast-hero h1 {
+    font-size: 40px !important;
+  }
+
+  .hero-section {
+    min-height: 520px !important;
+  }
+
+  .article-meta,
+  .episode-meta,
+  .related-card-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .article-card,
+  .episode-card,
+  .service-card,
+  .discipline-card,
+  .connect-card,
+  .related-card {
+    border-radius: 8px !important;
+  }
+
+  .article-content,
+  .episode-content,
+  .related-card-content {
+    padding: 22px !important;
+  }
+
+  .culture-highlights {
+    padding: 28px 18px !important;
+  }
+}
+
+/* Site-wide editorial refresh */
+:root {
+  --angle-max-width: 1180px;
+  --angle-nav-height: 76px;
+  --angle-burgundy: #6b272a;
+  --angle-burgundy-2: #8d3538;
+  --angle-ink-deep: #141111;
+  --angle-paper-warm: #fffaf3;
+  --angle-card: rgba(255, 255, 255, 0.92);
+  --angle-line: rgba(107, 39, 42, 0.14);
+}
+
+html {
+  scroll-padding-top: 96px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  color: var(--angle-ink, #171313);
+  background:
+    radial-gradient(circle at top left, rgba(214, 161, 63, 0.18), transparent 28rem),
+    radial-gradient(circle at 86% 12%, rgba(75, 31, 34, 0.14), transparent 24rem),
+    linear-gradient(90deg, rgba(107, 39, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(75, 31, 34, 0.08) 1px, transparent 1px),
+    var(--angle-paper-warm);
+  background-size: auto, auto, 44px 44px, 44px 44px, auto;
+}
+
+.container {
+  max-width: var(--angle-max-width) !important;
+  padding-left: clamp(18px, 4vw, 32px) !important;
+  padding-right: clamp(18px, 4vw, 32px) !important;
+}
+
+header {
+  background: rgba(255, 250, 243, 0.88) !important;
+  border-bottom: 1px solid var(--angle-line) !important;
+  box-shadow: 0 18px 38px rgba(20, 17, 17, 0.08) !important;
+  backdrop-filter: blur(18px);
+}
+
+.header-container {
+  min-height: var(--angle-nav-height);
+  height: auto !important;
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(16px, 3vw, 36px) !important;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 52px !important;
+  width: auto;
+  filter: drop-shadow(0 8px 16px rgba(20, 17, 17, 0.08));
+}
+
+nav,
+.tabs-section {
+  justify-self: center;
+  min-width: 0;
+}
+
+.tabs-section {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+nav ul,
+.tabs-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px !important;
+  list-style: none;
+  margin: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+nav li {
+  margin-left: 0 !important;
+}
+
+nav a,
+.tab a,
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px !important;
+  border-radius: 999px !important;
+  color: rgba(20, 17, 17, 0.76);
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0;
+  position: relative;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+nav a::after,
+.tab a::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 5px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--angle-gold), var(--angle-teal));
+  opacity: 0;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 220ms ease;
+}
+
+nav a:hover,
+.tab:hover,
+.tab:hover a {
+  color: var(--angle-burgundy) !important;
+  background: transparent !important;
+}
+
+nav a:hover::after,
+.tab:hover a::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+nav a.active,
+.tab.active,
+.tab.active a {
+  color: var(--angle-burgundy) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom-color: transparent !important;
+}
+
+nav a.active::after,
+.tab.active a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 14px !important;
+  right: 14px !important;
+  bottom: 5px !important;
+  width: auto !important;
+  height: 3px !important;
+  display: block !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, var(--accent), var(--angle-gold), var(--angle-teal)) !important;
+  opacity: 1 !important;
+  transform: scaleX(1);
+}
+
+.header-actions {
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.subscribe-btn {
+  min-height: 40px;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, var(--angle-burgundy), var(--angle-burgundy-2)) !important;
+  box-shadow: 0 12px 24px rgba(107, 39, 42, 0.2);
+}
+
+.mobile-menu-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(107, 39, 42, 0.16) !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+}
+
+.site-ribbon {
+  background:
+    linear-gradient(90deg, var(--angle-ink-deep), #2b1c1e 58%, var(--angle-teal)) !important;
+  border-bottom: 1px solid rgba(214, 161, 63, 0.24);
+}
+
+.hero,
+.featured-stories,
+.perspectives,
+.elections-section,
+.newsletter,
+.about-section,
+.internship-section,
+.elections-content,
+.perspectives-content,
+.podcast-content,
+.article-section,
+.related-section,
+.author-section,
+.connect-section {
+  position: relative;
+}
+
+.hero {
+  padding-top: clamp(34px, 6vw, 70px) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 250, 243, 0.22)) !important;
+}
+
+.hero-container,
+.podcast-container,
+.stories-grid,
+.perspectives-grid,
+.episodes-grid,
+.articles-grid,
+.services-grid,
+.disciplines-grid,
+.connect-grid,
+.related-grid,
+.footer-grid {
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-main {
+  border-radius: 8px !important;
+  isolation: isolate;
+}
+
+.hero-main::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.hero-copy {
+  padding: clamp(34px, 6vw, 64px) !important;
+}
+
+.hero-title,
+.section-title,
+.podcast-title,
+.newsletter-title,
+.about-hero h1,
+.elections-hero h1,
+.perspectives-hero h1,
+.podcast-hero h1,
+.hero-section .hero-title {
+  letter-spacing: 0 !important;
+  text-wrap: balance;
+}
+
+.section-header {
+  align-items: end !important;
+  border-bottom: 0 !important;
+  position: relative;
+  padding-bottom: 20px !important;
+}
+
+.section-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--angle-burgundy), rgba(214, 161, 63, 0.8), transparent);
+}
+
+.view-all,
+.read-more,
+.listen-now,
+.platform-link,
+.platform-btn,
+.back-button {
+  width: fit-content;
+}
+
+.story-card,
+.perspective-item,
+.article-card,
+.episode-card,
+.service-card,
+.discipline-card,
+.connect-card,
+.related-card,
+.author-card,
+.hero-sidebar {
+  border: 1px solid rgba(107, 39, 42, 0.13) !important;
+  background: var(--angle-card) !important;
+  box-shadow: 0 18px 38px rgba(20, 17, 17, 0.08) !important;
+  backdrop-filter: blur(8px);
+}
+
+.story-card,
+.perspective-item,
+.article-card,
+.episode-card,
+.service-card,
+.discipline-card,
+.connect-card,
+.related-card {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease !important;
+}
+
+.story-card:hover,
+.perspective-item:hover,
+.article-card:hover,
+.episode-card:hover,
+.service-card:hover,
+.discipline-card:hover,
+.connect-card:hover,
+.related-card:hover {
+  border-color: rgba(75, 31, 34, 0.28) !important;
+  box-shadow: 0 26px 56px rgba(20, 17, 17, 0.13) !important;
+}
+
+.story-image,
+.perspective-image,
+.article-image,
+.episode-image,
+.related-card img {
+  filter: saturate(1.1) contrast(1.04);
+}
+
+.story-card .story-content,
+.article-content,
+.episode-content,
+.perspective-content,
+.related-card-content {
+  position: relative;
+}
+
+.story-category,
+.article-category,
+.episode-category,
+.sidebar-category,
+.hero-category {
+  letter-spacing: 0.08em !important;
+}
+
+.story-meta,
+.article-meta,
+.episode-meta,
+.perspective-meta,
+.sidebar-meta,
+.related-card-meta {
+  color: rgba(20, 17, 17, 0.58) !important;
+}
+
+.podcast-section {
+  background:
+    linear-gradient(135deg, rgba(20, 17, 17, 0.98) 0%, rgba(107, 39, 42, 0.96) 55%, rgba(75, 31, 34, 0.9) 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.podcast-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  pointer-events: none;
+}
+
+.podcast-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.newsletter {
+  overflow: hidden;
+  color: var(--angle-ink, #171313);
+  background:
+    linear-gradient(135deg, rgba(255, 250, 243, 0.95), rgba(237, 246, 242, 0.95)) !important;
+  border-top: 1px solid var(--angle-line);
+}
+
+.newsletter .container {
+  position: relative;
+  z-index: 1;
+}
+
+.newsletter-title {
+  color: var(--angle-ink, #171313) !important;
+}
+
+.newsletter-subtitle {
+  color: rgba(20, 17, 17, 0.7) !important;
+}
+
+.newsletter .subscribe-btn,
+.newsletter .subscribe-btn a {
+  color: #ffffff !important;
+}
+
+.newsletter::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -110px;
+  width: min(560px, 80vw);
+  height: 220px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(107, 39, 42, 0.14);
+  border-radius: 50%;
+}
+
+footer {
+  padding: 34px 0 20px !important;
+  background:
+    linear-gradient(135deg, #141111 0%, #251719 56%, var(--angle-teal) 100%) !important;
+}
+
+footer .container {
+  position: relative;
+}
+
+footer .footer-grid {
+  gap: 28px !important;
+  margin-bottom: 24px !important;
+}
+
+footer .footer-column h3 {
+  margin-bottom: 16px !important;
+  padding-bottom: 8px !important;
+}
+
+footer .footer-column p {
+  margin-bottom: 12px !important;
+}
+
+footer .footer-links li {
+  margin-bottom: 8px !important;
+}
+
+footer .copyright {
+  padding-top: 18px !important;
+}
+
+@media (min-width: 981px) {
+  .article-section .article-container,
+  .article-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 980px) {
+  .header-container {
+    grid-template-columns: auto auto;
+  }
+
+  nav,
+  .tabs-section {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    order: 3;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .tabs-section {
+    display: block;
+  }
+
+  .tabs-container {
+    display: none !important;
+  }
+
+  nav.open {
+    display: block;
+  }
+
+  nav.open ul,
+  .tabs-container.active {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 4px !important;
+    border-radius: 8px;
+    margin-bottom: 14px;
+  }
+
+  nav ul,
+  .tabs-container {
+    width: 100%;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-actions {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    min-height: 68px;
+  }
+
+  .logo img {
+    height: 40px !important;
+  }
+
+  nav ul {
+    position: static !important;
+    padding: 6px !important;
+    box-shadow: none !important;
+  }
+
+  .hero-main::before {
+    inset: 12px;
+  }
+
+  .section-header {
+    display: grid !important;
+    gap: 14px;
+  }
+
+  .ribbon-container {
+    align-items: flex-start !important;
+    flex-direction: column;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .ribbon-slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-actions .subscribe-btn {
+    display: none;
+  }
+
+  nav a,
+  .tab a,
+  .tab {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+

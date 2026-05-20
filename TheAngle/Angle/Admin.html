@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        :root {
+            --primary: #121212;
+            --accent: #6b272a;
+            --angle-gold: #c9a34e;
+            --angle-teal: #0f766e;
+            --light: #f8f5ef;
+            --muted: #68625c;
+            --border: rgba(107, 39, 42, 0.15);
+            --shadow: 0 18px 45px rgba(18, 18, 18, 0.10);
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            background: linear-gradient(180deg, #fffaf3 0%, #f7f2ea 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 250, 243, 0.94);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+        }
+
+        .header-container {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        nav a.active,
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .subscribe-btn,
+        .mobile-menu-btn {
+            border: 0;
+            cursor: pointer;
+        }
+
+        .subscribe-btn {
+            background: var(--accent);
+            border-radius: 999px;
+            padding: 10px 18px;
+        }
+
+        .subscribe-btn a {
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .admin-shell {
+            padding: 42px 0 70px;
+        }
+
+        .admin-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .admin-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4.4rem);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .admin-hero p,
+        .login-panel p,
+        .admin-panel p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .login-panel,
+        .admin-panel {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        .admin-panel h2,
+        .login-panel h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .field {
+            display: grid;
+            gap: 7px;
+        }
+
+        .field label {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--primary);
+            font: inherit;
+            padding: 12px 13px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .admin-button,
+        .admin-card-actions button,
+        .file-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 800;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
+        .admin-button.primary {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--accent), var(--angle-teal));
+            color: #fff;
+        }
+
+        .admin-button.ghost {
+            background: rgba(107, 39, 42, 0.07);
+        }
+
+        .admin-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .file-button input {
+            display: none;
+        }
+
+        .status-message {
+            min-height: 24px;
+            color: var(--accent);
+            font-weight: 800;
+            margin-top: 14px;
+        }
+
+        .posts-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .admin-post-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 18px;
+            padding: 18px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .admin-post-card h3 {
+            font-size: 1.1rem;
+            margin: 8px 0;
+        }
+
+        .admin-post-card p {
+            max-width: 65ch;
+        }
+
+        .admin-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            border-radius: 999px;
+            background: rgba(18, 18, 18, 0.08);
+            color: var(--primary);
+            font-size: 0.74rem;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            padding: 5px 9px;
+            text-transform: uppercase;
+        }
+
+        .status-pill.published {
+            background: rgba(15, 118, 110, 0.12);
+            color: var(--angle-teal);
+        }
+
+        .admin-card-actions {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .admin-card-actions .danger {
+            color: #a61b25;
+        }
+
+        .empty-state {
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            color: var(--muted);
+            padding: 24px;
+            margin-top: 18px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 860px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                padding: 18px 24px;
+                background: #fffaf3;
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.open ul,
+            nav.active ul {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+
+            .admin-grid,
+            .admin-post-card {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-hero {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .admin-tools {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Elections.html">Elections</a></li>
+                    <li><a href="Perspectives.html">Perspectives</a></li>
+                    <li><a href="Articles.html">Articles</a></li>
+                    <li><a href="Podcast.html">Podcast</a></li>
+                    <li><a href="Admin.html" class="active">Admin</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-shell">
+        <div class="container">
+            <section class="admin-hero">
+                <div>
+                    <h1>Admin</h1>
+                    <p>Create, draft, and publish new stories into the site preview.</p>
+                </div>
+                <div class="admin-tools" id="dashboard-tools" hidden>
+                    <button class="admin-button ghost" id="export-posts" type="button"><i class="fas fa-download"></i>Export</button>
+                    <label class="file-button"><i class="fas fa-upload"></i>Import<input type="file" id="import-posts" accept="application/json"></label>
+                    <button class="admin-button" id="logout" type="button"><i class="fas fa-right-from-bracket"></i>Logout</button>
+                </div>
+            </section>
+
+            <section class="login-panel" id="login-view">
+                <h2>Admin Login</h2>
+                <p>Sign in to manage drafts and published stories.</p>
+                <form id="login-form" class="form-grid">
+                    <div class="field">
+                        <label for="admin-pin">Admin PIN</label>
+                        <input id="admin-pin" type="password" autocomplete="current-password" required>
+                    </div>
+                    <button class="admin-button primary" type="submit"><i class="fas fa-lock-open"></i>Login</button>
+                </form>
+                <div class="status-message" id="status-message" aria-live="polite"></div>
+            </section>
+
+            <section id="dashboard-view" hidden>
+                <div class="admin-grid">
+                    <section class="admin-panel">
+                        <h2 id="form-title">Create Post</h2>
+                        <p>Published posts appear first on Articles and in the homepage Featured Stories preview.</p>
+                        <form id="post-form" class="form-grid">
+                            <input type="hidden" id="post-id">
+                            <div class="field">
+                                <label for="post-title">Title</label>
+                                <input id="post-title" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="post-category">Category</label>
+                                <select id="post-category">
+                                    <option>Articles</option>
+                                    <option>Perspectives</option>
+                                    <option>Elections</option>
+                                    <option>Podcast</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="post-author">Author</label>
+                                <input id="post-author" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="post-date">Date</label>
+                                <input id="post-date" type="date">
+                            </div>
+                            <div class="field">
+                                <label for="post-excerpt">Excerpt</label>
+                                <textarea id="post-excerpt" required></textarea>
+                            </div>
+                            <div class="field">
+                                <label for="post-image">Image URL</label>
+                                <input id="post-image" type="url" placeholder="https://...">
+                            </div>
+                            <div class="field">
+                                <label for="post-url">Read URL</label>
+                                <input id="post-url" type="text" placeholder="Perspectives/example.html">
+                            </div>
+                            <div class="button-row">
+                                <button class="admin-button primary" type="submit"><i class="fas fa-paper-plane"></i>Publish</button>
+                                <button class="admin-button ghost" id="save-draft" type="button"><i class="fas fa-floppy-disk"></i>Save Draft</button>
+                                <button class="admin-button" id="reset-form" type="button"><i class="fas fa-plus"></i>New</button>
+                            </div>
+                        </form>
+                        <div class="status-message" aria-live="polite"></div>
+                    </section>
+
+                    <section class="admin-panel">
+                        <h2>Posts</h2>
+                        <p>Manage drafts and published stories stored in this browser.</p>
+                        <div id="empty-state" class="empty-state">No admin posts yet.</div>
+                        <div class="posts-list" id="posts-list"></div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>
