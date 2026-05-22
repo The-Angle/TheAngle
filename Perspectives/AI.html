@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treat your AI like a toddler | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+        /* Back button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .back-button i {
+            font-size: 12px;
+        }
+
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Tabs Navigation */
+        .tabs-section {
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--accent);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 75vh;
+            min-height: 600px;
+            background: linear-gradient(135deg, rgba(107, 39, 42, 0.9) 0%, rgba(18, 18, 18, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .hero-category {
+            background-color: rgba(107, 39, 42, 0.9);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
+            display: inline-block;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 400;
+            opacity: 0.95;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .hero-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+            /* Footer */
+            footer {
+                background-color: var(--dark);
+                color: white;
+                padding: 60px 0 30px;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+            .footer-column h3 {
+                font-size: 18px;
+                margin-bottom: 25px;
+                position: relative;
+                padding-bottom: 10px;
+                color: white;
+            }
+            .footer-column h3::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 40px;
+                height: 2px;
+                background-color: var(--accent);
+            }
+            .footer-links { list-style: none; }
+            .footer-links li { margin-bottom: 12px; display: flex; align-items: flex-start; }
+            .footer-links i { margin-right: 10px; color: var(--accent); width: 16px; margin-top: 3px; }
+            .footer-links a { color: #cccccc; transition: color 0.3s; }
+            .footer-links a:hover { color: white; }
+            .copyright {
+                text-align: center;
+                padding-top: 30px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: #999999;
+                font-size: 14px;
+            }
+
+            /* Responsive Footer */
+            @media (max-width: 1024px) {
+                .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 576px) {
+                .footer-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+        <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+                <section class="tabs-section">
+        <div class="container tabs-container">
+            <div class="tab"><a href="../index.html">Home</a></div>
+            <div class="tab"><a href="../about-us.html">About Us</a></div>
+            <div class="tab"><a href="../Elections.html">Elections</a></div>
+            <div class="tab"><a href="../Perspectives.html">Perspectives</a></div>
+            <div class="tab"><a href="../Articles.html">Articles</a></div>
+            <div class="tab"><a href="../Podcast.html">Podcast</a></div>
+        </div>
+    </section>
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+        
+            <h1 class="hero-title">Treat your AI like a toddler</h1>
+            <p class="hero-subtitle">A practical guide to responsibly implementing AI in business by nurturing it through developmental stages</p>
+            <div class="hero-meta">
+                <div class="hero-author">
+                    <span><strong>Clint Payne</strong></span>
+                </div>
+                <div class="hero-date">
+                    <i class="far fa-calendar"></i>
+                    <span>September 30, 2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-section" style="padding: 80px 0; background-color: var(--primary);">
+        <div class="article-container" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+            <a href="../Perspectives.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Perspectives
+            </a>
+            <div class="article-intro" style="font-size: 22px; line-height: 1.7; color: var(--text-light); margin-bottom: 40px; padding-bottom: 30px; border-bottom: 2px solid var(--border);">
+                It's impossible not to have had a conversation about Artificial Intelligence (AI). Whether it's a conversation about job prospects, what it can do, what it can't do or how it's going to take over the world, AI has become part of every aspect of our lives – just like the personal computer did in the eighties.
+            </div>
+            
+            <div class="article-content" style="font-size: 18px; line-height: 1.8; color: var(--text);">
+                <p>Inescapably, businesses too need to consider how to use AI. The early adopters, like fan-boys at an iPhone launch, rush to embrace the new tech and the promises it makes. They invest time and money to be first to market. You can call it vanity if you like, but these are folks we'll thank later on when the tech delivers.</p>
+
+                <p>But there's a cost – AI for AI's sake is making a mistake. And we've made this mistake before.</p>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">Learning from the past: The IVR nightmare</h2>
+
+                <p>Remember the IVR's of the late nineties – those automated responses to your DTMF prompts that kept you in the loop of death? Call any provider of a service, and a web of menus and voice prompts put more and more and more time between you and an actually living, breathing human. Promptly updated with voice recognition, the improved IVR's left frustrated and yelling "human" in a feeble attempt to connect to an underpaid and overworked call center agent. I fear we may be on the same journey with AI.</p>
+
+                <p>Just because AI can replace us over-stressed humans, doesn't mean it should, or indeed that it's ready to. AI is here and there is no more putting off the inevitable, but we need a plan, and I think we can look to ourselves for the solution.</p>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">Your AI needs to be parented</h2>
+
+                <p>Start it off as you would a toddler. Like a toddler would learn to walk and crawl, let it learn the mechanics of daily life where it's safe and secure and can't get into any trouble. Set it to work on your back-office processes that could use automation. Look for the trouble spots that take longer than they should and use AI to investigate and automate those. Let it learn and make mistakes. Teach it and give it boundaries. Flex your automation muscle.</p>
+
+                <blockquote style="border-left: 4px solid var(--accent); padding: 25px; margin: 40px 0; background-color: var(--secondary); font-style: italic; font-size: 20px; line-height: 1.6;">"Once it's surefooted, send it off to 'school' where it can learn to work with others."</blockquote>
+
+                <p>Deploy your AI as a supporting act to your human agent pool. Teach it how to source and sort the information agents need. How to automate tasks on their behalf. How to mitigate the risk human error poses. In short, teach it how to be human, alongside other humans.</p>
+
+                <p>And then, when it's finally an adult, let it lose among your customers. Let it hide among your agent pool, disguised as a human and monitor its progress. Slowly increase the number of customers it helps and carefully monitor feedback from your customers. As soon as it's on its best behavior, send it out into the world like proud parent and hope it doesn't boomerang.</p>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">Who gets it right?</h2>
+
+                <p>FlySafair is the standout in my book. Their WhatsApp bot is unobtrusively helpful. It's there when you need it, and quiet as a mouse when you don't. They've taken the time to understand each step in the passenger journey, tasked their bot with smoothing that process out.</p>
+
+                <p>If you're after a bot with a sense of humour, check out Netflorist. You know it's a bot, but it certainly has "Harold" from their radio ads down pat.</p>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">The uncanny valley of AI knowledge</h2>
+
+                <p>It's in our nature to anthropomorphize objects. The more human they seem, the more human we want them to be. To a point. It's called the "uncanny valley". As robots look increasingly human, our empathy grows, until it's almost human. Suddenly our empathy becomes revulsion.</p>
+
+                <p>The creep factor here is largely based on appearance. I have to wonder, is there a creep factor for text bots? Rather than revulsion, I think our uncanny valley will be driven by knowledge.</p>
+
+                <p>The more bots and AI learn about us, the easier they make our lives. As this learning increases, rather than empathy, we come to rely on them. To a point. Our uncanny valley comes when a bot learns or infers that factoid they really shouldn't know. Rather than revolted by a bot, we feel violated.</p>
+
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin: 50px 0 25px 0; line-height: 1.3;">Raising wholly human AI</h2>
+
+                <p>It's an inescapable truth that we will need to live with AI in all it's forms. From the mundane everyday variety to the SkyNet take over the world kind. Perhaps as AI evolves, it will make good on the promises it makes. It may be just as true that the pressure to perform will shape its logic and sense of self. If it is to be our overlord, would it not be best to raise wholly human AI?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                 
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about-us.html">About Us</a></li>
+                        <li><a href="../Elections.html">Elections</a></li>
+                        <li><a href="../Perspectives.html">Perspectives</a></li>
+                        <li><a href="../Articles.html">Articles</a></li>
+                    <li><a href="../Podcast.html">Podcast</a></li>
+                       
+                    </ul>
+                </div>
+                
+                
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="../js/mobile.js"></script>
+</body>
+</html>
