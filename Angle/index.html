@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Angle Africa | Modern News Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Tabs Navigation */
+        .tabs-section {
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .tabs-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .tabs-container::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--accent);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 50px 0 40px;
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hero-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .hero-main {
+            position: relative;
+        }
+        
+        .hero-category {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+        
+        .hero-author {
+            font-weight: 600;
+            color: var(--accent);
+            margin-right: 20px;
+        }
+        
+        .hero-date {
+            font-size: 14px;
+        }
+        
+        .hero-excerpt {
+            font-size: 18px;
+            color: var(--text);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 16px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .hero-sidebar {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .sidebar-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-category {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .sidebar-meta {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Featured Stories Section */
+        .featured-stories {
+            padding: 60px 0;
+            background-color: var(--secondary);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .view-all {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .story-card {
+            background-color: var(--primary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .story-content {
+            padding: 25px;
+        }
+        
+        .story-category {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .story-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+        
+        .story-excerpt {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Perspectives Section */
+        .perspectives {
+            padding: 60px 0;
+            background-color: var(--primary);
+        }
+        
+        .perspectives-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .perspective-item {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .perspective-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .perspective-image {
+            height: 150px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .perspective-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .perspective-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            flex-grow: 1;
+            color: var(--dark);
+        }
+        
+        .perspective-meta {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Podcast Section */
+        .podcast-section {
+            background-color: var(--secondary);
+            padding: 70px 0;
+            text-align: center;
+        }
+        
+        .podcast-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .podcast-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .podcast-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .podcast-player {
+            background-color: var(--primary);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+        
+        .podcast-info {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        
+        .podcast-episode-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .podcast-episode-desc {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .podcast-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .podcast-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .podcast-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .podcast-progress {
+            flex-grow: 1;
+            height: 6px;
+            background-color: var(--border);
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .podcast-progress-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 40%;
+            background-color: var(--accent);
+        }
+        
+        /* Elections Section */
+        .elections-section {
+            padding: 60px 0;
+            background-color: var(--primary);
+        }
+        
+        .election-highlight {
+            background: linear-gradient(135deg, #6b272a 0%, #8a3a3d 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .election-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .election-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .election-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 80px;
+        }
+        
+        .countdown-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            background-color: var(--secondary);
+            color: var(--text);
+            padding: 70px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .newsletter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .newsletter-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: 1px solid var(--border);
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+            background-color: var(--primary);
+            color: var(--text);
+        }
+        
+        .newsletter-input::placeholder {
+            color: var(--text-light);
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .newsletter-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 4px 4px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .perspectives-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .election-countdown {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .perspectives-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-container {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .tabs-container.active {
+                display: flex;
+            }
+
+            .tabs-container .tab {
+                padding: 12px 0;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+                border: 1px solid var(--border);
+            }
+            
+            .newsletter-btn {
+                border-radius: 4px;
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .view-all {
+                margin-top: 10px;
+            }
+            
+            .tabs-container {
+                padding: 0 10px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .podcast-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .podcast-progress {
+                width: 100%;
+            }
+            
+            .hero-sidebar {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+              <section class="tabs-section">
+        <div class="container tabs-container">
+            <div class="tab active">Home</div>
+            <div class="tab"><a href="about-us.html">About Us</a></div>
+            <div class="tab"><a href="Elections.html">Elections</a></div>
+            <div class="tab"><a href="Perspectives.html">Perspectives</a></div>
+            <div class="tab"><a href="Podcast.html">Podcast</a></div>
+            
+        </div>
+    </section>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+ 
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-main">
+                <div class="hero-category">Elections</div>
+                <h1 class="hero-title">Are African elections manipulated by foreign disinformation campaigns?</h1>
+                <div class="hero-meta">
+                    <span class="hero-author">Tom Mboya</span>
+                    <span class="hero-date">Apr 17, 2024</span>
+                </div>
+                <p class="hero-excerpt">2024 is touted as the biggest election year in history. More than 80 national elections are scheduled to take place, affecting the lives of billions of people globally.</p>
+                <a href="Elections/African.html" class="read-more">Read Full Story →</a>
+            </div>
+
+            <div class="hero-sidebar">
+                <div class="sidebar-item">
+                    <div class="sidebar-category">Perspectives</div>
+                    <h3 class="sidebar-title">Whose agenda is being served?</h3>
+                    <div class="sidebar-meta">Stanley Moloto • Apr 23, 2024</div>
+                    <p style="margin-top:8px;color:var(--text-light);">Understanding the dynamics surrounding AI African data extraction and hidden corporate interests.</p>
+                    <a href="Perspectives/agenda.html" class="read-more" style="display:inline-block;margin-top:10px;">Read →</a>
+                </div>
+
+                <div class="sidebar-item">
+                    <div class="sidebar-category">Podcast</div>
+                    <h3 class="sidebar-title">Smart Tech, Broken Systems – Building a Startup in South Africa’s Civic Sector</h3>
+                    <div class="sidebar-meta">Scott Smith • Dec 3, 2025</div>
+                    <p style="margin-top:8px;color:var(--text-light);">From landfill billing to AI-powered mining tools, this innovator shows how tech rooted in social impact can still scale.</p>
+                    <a href="Podcast/Civic.html" class="read-more" style="display:inline-block;margin-top:10px;">Listen →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Stories Section -->
+    <section class="featured-stories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Stories</h2>
+                <a href="#" class="view-all">View All Stories</a>
+            </div>
+            
+            <div class="stories-grid">
+                <!-- Mixed order: Podcast, Elections, Perspectives, Podcast, Elections, Perspectives -->
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Podcast</div>
+                        <h3 class="story-title">Wonder Needs a Workflow | Nkululeko Sedibe on Building WonderBooks</h3>
+                        <p class="story-excerpt">Turning phones into learning tools: design choices, impact models, and classroom realities.</p>
+                        <div class="story-meta"><span>Scott Smith</span> <span>Dec 3, 2025</span></div>
+                        <a href="Podcast/WonderBooks.html" class="read-more">Listen →</a>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Elections</div>
+                        <h3 class="story-title">Do politicians deliberately sabotage ICT adoption in African elections?</h3>
+                        <p class="story-excerpt">In recent years, there has been a surge in the adoption of ICT tools in global elections, changing how democratic processes run.</p>
+                        <div class="story-meta"><span>Gedion Onyango</span> <span>Sep 2, 2024</span></div>
+                        <a href="Elections/Politicians.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Perspectives</div>
+                        <h3 class="story-title">Africa's digital future: The battle for control over Internet infrastructure and data</h3>
+                        <p class="story-excerpt">As connectivity expands, control over cables, data centers, and governance will shape Africa's digital destiny.</p>
+                        <div class="story-meta"><span>Stanley Moloto</span> <span>Nov 18, 2024</span></div>
+                        <a href="Perspectives/Infrastrature.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Podcast</div>
+                        <h3 class="story-title">Own Your Mind vs Own the System | Penuel the Black Pen's Hard Reset for South Africa</h3>
+                        <p class="story-excerpt">An unfiltered tour through Penuel Mlotshwa's worldview – freedom with consequences and calls for institutional reform.</p>
+                        <div class="story-meta"><span>Stanley Moloto</span> <span>Dec 3, 2025</span></div>
+                        <a href="Podcast/OwnVsMind.html" class="read-more">Listen →</a>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1559301403-669a0ad7c2d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Elections</div>
+                        <h3 class="story-title">E-voting versus paper ballots</h3>
+                        <p class="story-excerpt">Comparing digital ballot systems with traditional paper voting: risks, benefits, and integrity concerns.</p>
+                        <div class="story-meta"><span>Prof. Colin Thakur</span> <span>May 19, 2024</span></div>
+                        <a href="Elections/E-Voting.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Perspectives</div>
+                        <h3 class="story-title">AI is driving data centre growth in Africa</h3>
+                        <p class="story-excerpt">AI and cloud services are accelerating demand for local data centers to support digital economies.</p>
+                        <div class="story-meta"><span>Juanita Clark</span> <span>Sep 2, 2024</span></div>
+                        <a href="Perspectives/Data.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elections Section -->
+    <section class="elections-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Election Coverage</h2>
+                <a href="#" class="view-all">Full Election Coverage</a>
+            </div>
+            
+        
+            
+            <div class="stories-grid">
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1551135049-8a33b2fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Elections</div>
+                        <h3 class="story-title">Voter Turnout Expected to Break Records</h3>
+                        <p class="story-excerpt">Early voting data suggests unprecedented participation in the upcoming national elections.</p>
+                        <div class="story-meta">
+                            <span>James Okafor</span>
+                            <span>Oct 28, 2023</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Politics</div>
+                        <h3 class="story-title">Youth Vote Could Decide Election Outcome</h3>
+                        <p class="story-excerpt">Analysis shows young voters are more engaged than ever, potentially swaying tight races.</p>
+                        <div class="story-meta">
+                            <span>Sarah Johnson</span>
+                            <span>Oct 25, 2023</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="story-card">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1576089172869-6f10fb4d0d0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="story-content">
+                        <div class="story-category">Policy</div>
+                        <h3 class="story-title">Economic Policies of Leading Candidates</h3>
+                        <p class="story-excerpt">A comparative analysis of tax plans, spending proposals, and economic vision.</p>
+                        <div class="story-meta">
+                            <span>Michael Chen</span>
+                            <span>Oct 22, 2023</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perspectives Section -->
+    <section class="perspectives">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Perspectives</h2>
+                <a href="#" class="view-all">View All Perspectives</a>
+            </div>
+            
+            <div class="perspectives-grid">
+                <div class="perspective-item">
+                    <div class="perspective-image" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="perspective-content">
+                        <h3 class="perspective-title">Africa's digital future: The battle for control over Internet infrastructure and data</h3>
+                        <div class="perspective-meta">Stanley Moloto • Nov 18, 2024</div>
+                    </div>
+                </div>
+
+                <div class="perspective-item">
+                    <div class="perspective-image" style="background-image: url('https://images.unsplash.com/photo-1676299081847-824916de030a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="perspective-content">
+                        <h3 class="perspective-title">Treat your AI like a toddler</h3>
+                        <div class="perspective-meta">Clint Payne • Sep 30, 2024</div>
+                    </div>
+                </div>
+
+                <div class="perspective-item">
+                    <div class="perspective-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="perspective-content">
+                        <h3 class="perspective-title">AI is driving data centre growth in Africa</h3>
+                        <div class="perspective-meta">Juanita Clark • Sep 2, 2024</div>
+                    </div>
+                </div>
+
+                <div class="perspective-item">
+                    <div class="perspective-image" style="background-image: url('https://images.unsplash.com/photo-1573164713712-03790a178651?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="perspective-content">
+                        <h3 class="perspective-title">Africa's data centre market and digital transformation pathways</h3>
+                        <div class="perspective-meta">Chudi Okoye • Sep 2, 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section class="podcast-section">
+        <div class="container podcast-container">
+            <h2 class="podcast-title">The Angle Podcast</h2>
+            <p class="podcast-subtitle">Listen to our latest episodes featuring in-depth discussions with experts, analysts, and thought leaders.</p>
+            
+            <div class="podcast-player">
+                <div class="episodes-grid">
+                    <!-- Episode 1 -->
+                    <article class="story-card">
+                        <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="story-content">
+                            <div class="story-category">Podcast</div>
+                            <h3 class="story-title">Own Your Mind vs Own the System | Penuel the Black Pen's Hard Reset for South Africa</h3>
+                            <p class="story-excerpt">An unfiltered tour through Penuel Mlotshwa's worldview – freedom with consequences, schools as daycare, SMEs as a 'scam,' and why South Africa needs a complete reset.</p>
+                            <div class="story-meta">
+                                <span>Stanley Moloto</span>
+                                <span>Dec 3, 2025</span>
+                            </div>
+                            <a href="Podcast/OwnVsMind.html" class="read-more">Watch Now →</a>
+                        </div>
+                    </article>
+
+                    <!-- Episode 2 -->
+                    <article class="story-card">
+                        <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="story-content">
+                            <div class="story-category">Podcast</div>
+                            <h3 class="story-title">Wonder Needs a Workflow | Nkululeko Sedibe on Building WonderBooks</h3>
+                            <p class="story-excerpt">From 'guilt-free screen time' to a hybrid impact model, the iNKULU founder unpacks what it really takes to turn phones into learning tools for South African classrooms.</p>
+                            <div class="story-meta">
+                                <span>Scott Smith</span>
+                                <span>Dec 3, 2025</span>
+                            </div>
+                            <a href="Podcast/WonderBooks.html" class="read-more">Watch Now →</a>
+                        </div>
+                    </article>
+
+                    <!-- Episode 3 -->
+                    <article class="story-card">
+                        <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="story-content">
+                            <div class="story-category">Podcast</div>
+                            <h3 class="story-title">Stage to Sandbox: Building Africa's Leading Digital Festival</h3>
+                            <p class="story-excerpt">Decentralising the festival, centering African immersive work, and building a sustainable ecosystem – one hard decision at a time with Alby Michaels.</p>
+                            <div class="story-meta">
+                                <span>Stanley Moloto</span>
+                                <span>Dec 3, 2025</span>
+                            </div>
+                            <a href="Podcast/Sandbox.html" class="read-more">Watch Now →</a>
+                        </div>
+                    </article>
+
+                    <!-- Episode 4 -->
+                    <article class="story-card">
+                        <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1592478411213-6153e4ebc696?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="story-content">
+                            <div class="story-category">Podcast</div>
+                            <h3 class="story-title">From Farm to VR – The Unlikely Journey of MetaRick</h3>
+                            <p class="story-excerpt">Exploring how South African technologist Rick Treweek built worlds—and community—in the metaverse, from rural beginnings to virtual reality innovation.</p>
+                            <div class="story-meta">
+                                <span>Scott Smith</span>
+                                <span>Dec 3, 2025</span>
+                            </div>
+                            <a href="Podcast/Farm.html" class="read-more">Watch Now →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="newsletter-title">Stay Informed</h2>
+            <p class="newsletter-subtitle">Subscribe to our newsletter to get the latest news, updates, and exclusive content delivered directly to your inbox.</p>
+            
+            <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                   
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="Elections.html">Elections</a></li>
+                        <li><a href="Perspectives.html">Perspectives</a></li>
+                        <li><a href="Podcast">Podcast</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein<</a></li>
+                        <li><i class="fas fa-phone"></i><a href="#">+27 82 627 3911</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle (use .tabs-container as nav target and guard elements)
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.querySelector('.tabs-container');
+
+        if (mobileMenuBtn && mainNav) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when clicking outside on mobile
+            document.addEventListener('click', (event) => {
+                if (window.innerWidth <= 768) {
+                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mainNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Scroll to section based on tab clicked
+                const tabText = tab.textContent.trim();
+                if (tabText === 'Perspectives') {
+                    document.querySelector('.perspectives').scrollIntoView({ behavior: 'smooth' });
+                } else if (tabText === 'Podcast') {
+                    document.querySelector('.podcast-section').scrollIntoView({ behavior: 'smooth' });
+                } else if (tabText === 'Elections') {
+                    document.querySelector('.elections-section').scrollIntoView({ behavior: 'smooth' });
+                } else if (tabText === 'Subscribe') {
+                    document.querySelector('.newsletter').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Podcast player functionality
+        const playBtn = document.getElementById('play-btn');
+        const playIcon = playBtn.querySelector('i');
+        let isPlaying = false;
+        
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            } else {
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            }
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('.newsletter-input').value;
+            alert(`Thank you for subscribing with email: ${email}`);
+            newsletterForm.reset();
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>
