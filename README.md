@@ -1,6 +1,6 @@
-# The Angle Africa
+# The Angle 
 
-The Angle Africa is a static editorial website with a small Node.js local server for admin content editing.
+The Angle is a static editorial website with a small Node.js local server for admin content editing.
 
 The public pages are plain HTML, CSS, and JavaScript. The admin dashboard writes article content to JSON files under `data/`, so the project can be hosted as a static website while still allowing local content updates.
 
@@ -92,6 +92,9 @@ If GitHub already has commits that are not in your local folder, pull first:
 git pull origin main --allow-unrelated-histories --no-edit
 git push -u origin main
 ```
+## Live Link
+
+https://theangle.co.za/ 
 
 ## Documentation
 
