@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreign Disinformation in African Elections | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+            --warning-orange: #ff6b35;
+            --danger-red: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 80vh;
+            min-height: 650px;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.9) 0%, rgba(18, 18, 18, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1611348586804-61bf6c080437?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 1100px;
+            padding: 0 20px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero-category {
+            background: linear-gradient(135deg, var(--danger-red) 0%, var(--warning-orange) 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 35px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 40px;
+            display: inline-block;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 35px;
+            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(135deg, #ffffff 0%, #ffcccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 500;
+            opacity: 0.95;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .hero-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .hero-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .hero-date {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Warning indicators */
+        .threat-indicators {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 50px;
+            z-index: 2;
+        }
+        
+        .threat-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(220, 53, 69, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .threat-indicator i {
+            font-size: 28px;
+            color: var(--warning-orange);
+        }
+        
+        .threat-indicator span {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Article Content */
+        .article-section {
+            padding: 100px 0;
+            background-color: var(--primary);
+        }
+        
+        .article-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .article-intro {
+            font-size: 22px;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-style: italic;
+            padding: 35px;
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(220, 53, 69, 0.05) 100%);
+            border-left: 5px solid var(--danger-red);
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .threat-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(220, 53, 69, 0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--danger-red);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .regional-breakdown {
+            margin: 60px 0;
+            padding: 40px;
+            background: var(--secondary);
+            border-radius: 20px;
+        }
+        
+        .regional-breakdown h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .region-card {
+            background: var(--primary);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .region-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .region-card .count {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--danger-red);
+            margin-bottom: 10px;
+        }
+        
+        .region-card .label {
+            font-size: 14px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            margin: 60px 0 30px;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        .article-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 40px 0 25px;
+            color: var(--accent);
+        }
+        
+        .article-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+        
+        .article-content blockquote {
+            font-size: 22px;
+            font-style: italic;
+            margin: 45px 0;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-left: 5px solid var(--danger-red);
+            color: var(--text-light);
+            border-radius: 0 15px 15px 0;
+        }
+        
+        .article-content ul {
+            margin: 25px 0 25px 30px;
+        }
+        
+        .article-content li {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .article-image {
+            width: 100%;
+            margin: 50px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .article-image-caption {
+            padding: 25px;
+            background-color: var(--secondary);
+            font-size: 15px;
+            color: var(--text-light);
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(220, 53, 69, 0.1) 100%);
+            border: 2px solid var(--warning-orange);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .warning-box h4 {
+            color: var(--danger-red);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-box h4 i {
+            font-size: 24px;
+        }
+        
+        /* Author Section */
+        .author-section {
+            background-color: var(--secondary);
+            padding: 80px 0;
+        }
+        
+        .author-card {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: var(--primary);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+        
+        .author-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+        }
+        
+        .author-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        .author-bio {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        
+        /* Related Articles */
+        .related-section {
+            padding: 100px 0;
+            background-color: var(--primary);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .related-card {
+            background-color: var(--primary);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .related-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        
+        .related-card-content {
+            padding: 35px;
+        }
+        
+        .related-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        .related-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .related-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Connect Section */
+        .connect-section {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .connect-card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .connect-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .platform-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-link {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .platform-link:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .hero-meta {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .threat-indicators {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .threat-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 25px;
+            }
+            
+            .region-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-content h2 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .connect-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .platform-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .article-container {
+                padding: 0 15px;
+            }
+            
+            .author-card {
+                padding: 30px;
+                margin: 0 15px;
+            }
+            
+            .threat-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about-us.html">About Us</a></li>
+                    <li><a href="../Elections.html" class="active">Elections</a></li>
+                    <li><a href="../Perspectives.html">Perspectives</a></li>
+                    <li><a href="../Articles.html">Articles</a></li>
+                    <li><a href="../Podcast.html">Podcast</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+          
+            <h1 class="hero-title">Foreign Interference in African Elections</h1>
+            <p class="hero-subtitle">Exposing the alarming surge in foreign-sponsored disinformation campaigns targeting African democracies and electoral processes</p>
+            <div class="hero-meta">
+                <div class="hero-author">
+                    <span>By Tom Mboya</span>
+                </div>
+                <div class="hero-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>April 17, 2024</span>
+                </div>
+            </div>
+        </div>
+        
+       
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-section">
+        <div class="article-container">
+            <div class="article-intro">
+                2024 is touted as the biggest election year in history. More than 80 national elections are scheduled to take place, affecting 52% of the global population. However, in a recent survey by Ipsos, 87% of respondents expressed concern that disinformation could affect election results, with social media identified as the leading source.
+            </div>
+            
+            <div class="threat-stats">
+                <div class="stat-item">
+                    <div class="stat-number">166</div>
+                    <div class="stat-label">Disinformation Campaigns</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4x</div>
+                    <div class="stat-label">Surge Since 2022</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">300M</div>
+                    <div class="stat-label">New Social Media Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">87%</div>
+                    <div class="stat-label">Concerned About Disinfo</div>
+                </div>
+            </div>
+            
+            <div class="article-content">
+                <h2>The Disinformation Epidemic</h2>
+                <p>The Global Risks Report 2024 identifies disinformation as one of the top risks the world will have to contend with, predicting that "over the next two years, the widespread use of misinformation and disinformation, and tools to disseminate it, may undermine the legitimacy of newly elected governments."</p>
+                
+                <blockquote>
+                    "Resulting unrest could range from violent protests and hate crimes to civil confrontation and terrorism. The rise of disinformation may increasingly embolden governments to control information based on what they determine to be 'true'."
+                </blockquote>
+                
+                <h3>Foreign Sponsored Disinformation Campaigns</h3>
+                <p>A recent study by the Africa Center for Strategic Studies (ACSS), "Mapping a Surge of Disinformation in Africa", has found that disinformation campaigns to manipulate African information systems have surged nearly four-fold since 2022.</p>
+                
+                <div class="regional-breakdown">
+                    <h3>Regional Campaign Distribution</h3>
+                    <div class="region-grid">
+                        <div class="region-card">
+                            <h4>West Africa</h4>
+                            <div class="count">72</div>
+                            <div class="label">Campaigns</div>
+                        </div>
+                        <div class="region-card">
+                            <h4>East Africa</h4>
+                            <div class="count">33</div>
+                            <div class="label">Campaigns</div>
+                        </div>
+                        <div class="region-card">
+                            <h4>Southern Africa</h4>
+                            <div class="count">25</div>
+                            <div class="label">Campaigns</div>
+                        </div>
+                        <div class="region-card">
+                            <h4>Central Africa</h4>
+                            <div class="count">21</div>
+                            <div class="label">Campaigns</div>
+                        </div>
+                        <div class="region-card">
+                            <h4>North Africa</h4>
+                            <div class="count">15</div>
+                            <div class="label">Campaigns</div>
+                        </div>
+                        <div class="region-card">
+                            <h4>Trans-African</h4>
+                            <div class="count">23</div>
+                            <div class="label">Kremlin/CCP Linked</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2>Foreign Manipulation by Region</h2>
+                
+                <h3>North Africa</h3>
+                <p>There was evidence of Kremlin-linked interference across the region, in addition to domestic political actors manipulating information systems for electoral advantage.</p>
+                
+                <h3>East Africa</h3>
+                <p>Domestic political actors bore the primary responsibility for disinformation campaigns, though there was also evidence of campaigns orchestrated by militant Islamist groups and military actors.</p>
+                
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1611348586804-61bf6c080437?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social media disinformation">
+                    <div class="article-image-caption">Social media platforms have become the primary vectors for foreign disinformation campaigns targeting African elections</div>
+                </div>
+                
+                <h3>Southern Africa</h3>
+                <p>The Southern African region witnessed a significant number of Kremlin-linked and CCP-linked disinformation campaigns. Interestingly, campaigns propagated by domestic political actors only featured in 2 instances in Zimbabwe.</p>
+                
+                <h3>Central & West Africa</h3>
+                <p>Kremlin-linked influence dominated both regions. West Africa saw the highest concentration of foreign-sponsored campaigns, alongside CCP-linked operations and domestic political manipulation.</p>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-shield-alt"></i>Critical Threat to Democracy</h4>
+                    <p>The study identified 23 trans-African campaigns linked primarily to the Kremlin and, to a lesser extent, the Chinese Communist Party (CCP). These campaigns represent a direct threat to African sovereignty and democratic processes.</p>
+                </div>
+                
+                <h2>Social Media and Disinformation</h2>
+                <p>This clear and targeted obfuscation has important ramifications for the social media space in Africa. Key statistics include:</p>
+                
+                <ul>
+                    <li>300 million Africans have come onto social media in the past 7 years</li>
+                    <li>There are over 400 million active social media users and 600 million internet users on the continent</li>
+                    <li>Africans online rely on social media for news content at among the highest rates in the world</li>
+                    <li>Social media users in Kenya and Nigeria are near the top globally in terms of hours per day spent on platforms</li>
+                </ul>
+                
+                <p>With this background, it is clear that a significant proportion of the African electorate will make political choices based on information consumed on social media. African elections have proved to be prime fodder for disinformation and influence campaigns.</p>
+                
+                <h3>Mercenary Information Operations</h3>
+                <p>Deploying mercenary disinfo-ops teams, one Israeli group, "Team Jorge" has reportedly carried out disinformation campaigns influencing over 20 African elections since 2015.</p>
+                
+                <blockquote>
+                    "Jurisdictions with stronger checks and balances such as those that uphold presidential term limits appear to be less vulnerable to foreign-sponsored disinformation campaigns."
+                </blockquote>
+                
+                <h2>The Path Forward</h2>
+                <p>All these reports make it clear that foreign state actors are heavily invested in influencing the African political space and elections for their own purposes through disinformation. African politicians must therefore rise to the occasion and act to safeguard our democratic space.</p>
+                
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="African leadership">
+                    <div class="article-image-caption">African leaders must implement robust legislative and policy measures to counter foreign disinformation threats</div>
+                </div>
+                
+                <p>Politicians need to sensitize voters on the extent of disinformation on social media and online, as well as consider and implement effective and robust legislative and policy measures. This situation is all the more daunting as a result of the speed at which disinformation trends evolve, as evidenced by the rise of generative artificial intelligence.</p>
+                
+                <p>Fortunately, Africa does not lack the intellectual capacity to address these challenges; that prowess need only be combined with the commensurate political will to address one of the most critical challenges of our time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="author-section">
+        <div class="container">
+            <div class="author-card">
+                <div class="author-header">
+                    
+                    <div class="author-info">
+                        <h3>Tom Mboya</h3>
+                        <p>Digital Democracy & Information Security Analyst</p>
+                    </div>
+                </div>
+                <div class="author-bio">
+                    <p>Tom Mboya is a leading expert in digital democracy and information security with a focus on African electoral systems. His research centers on the intersection of technology, democracy, and foreign interference in electoral processes. He has advised multiple African governments on countering disinformation and strengthening democratic institutions in the digital age.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="related-section">
+        <div class="container">
+            <h2 class="section-title">Related Articles</h2>
+            <div class="related-grid">
+                <article class="related-card">
+                    
+                    <div class="related-card-content">
+                        <h3>Is social media weakening Africa's democracy?</h3>
+                        <p>Examining the dual role of social media as both a tool for democratic engagement and a vector for misinformation.</p>
+                        <div class="related-card-meta">
+                            <span>Democracy</span>
+                            <span>Apr 17, 2024</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="related-card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="AI data extraction">
+                    <div class="related-card-content">
+                        <h3>AI African data extraction dynamics</h3>
+                        <p>Whose agenda is being served by the dynamics surrounding AI African data extraction and algorithmic bias?</p>
+                        <div class="related-card-meta">
+                            <span>Technology</span>
+                            <span>Apr 23, 2024</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="related-card">
+                    <img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Election technology">
+                    <div class="related-card-content">
+                        <h3>E-voting versus paper ballots</h3>
+                        <p>The technology debate that could reshape African democracy and electoral integrity.</p>
+                        <div class="related-card-meta">
+                            <span>Elections</span>
+                            <span>May 19, 2024</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title" style="color: black;">Connect With Us</h2>
+            
+            <div class="connect-grid">
+                <div class="connect-card">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest insights on African digital culture, creativity, and innovation.</p>
+                    <div class="platform-links">
+                        <a href="https://theangleafrica.substack.com/?utm_source=global-search" class="platform-link" target="_blank">Subscribe to Newsletter</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Listen to Our Podcast</h3>
+                    <p>Available on all major podcast platforms</p>
+                    <div class="platform-links">
+                        <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-link" target="_blank">Spotify</a>
+                        <a href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" class="platform-link" target="_blank">YouTube</a>
+                        <a href="https://theangleafrica.substack.com/" class="platform-link" target="_blank">Substack</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Follow Our Updates</h3>
+                    <p>Stay connected on social media for daily updates and community discussions</p>
+                    <div class="social-links">
+                        <a href="https://x.com/TheAngle_Afrika" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/theangle.afrika/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/the-angle-africa" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@the.angle.podcast" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/people/The-Angle-Africa/61569042767052/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 41 Juta Street, Braamfontein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="../Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                  
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../about-us.html">About Us</a></li>
+                            <li><a href="../Elections.html">Elections</a></li>
+                            <li><a href="../Perspectives.html">Perspectives</a></li>
+                            <li><a href="../Articles.html">Articles</a></li>
+                        <li><a href="../Podcast.html">Podcast</a></li>
+                            <li><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth <= 768) {
+                if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="../js/mobile.js"></script>
+</body>
+</html>

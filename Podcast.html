@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast | The Angle Africa</title>
+    <link rel="icon" type="image/png" href="Logo-1-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Tabs Navigation */
+        .tabs-section {
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--accent);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        /* Podcast Page Styles */
+        .podcast-hero {
+            padding: 44px 0 36px;
+            background:
+                linear-gradient(135deg, rgba(18, 18, 18, 0.84) 0%, rgba(107, 39, 42, 0.78) 100%),
+                url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center / cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        
+        .podcast-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(38px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        
+        .podcast-hero .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+        
+        .podcast-platforms {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .platform-btn:hover {
+            background-color: white;
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .podcast-filters {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 0 0 34px;
+        }
+
+        .filter-btn {
+            border: 1px solid rgba(107, 39, 42, 0.22);
+            background: #ffffff;
+            color: var(--accent);
+            min-width: 170px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 14px 30px rgba(18, 18, 18, 0.08);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 18px 36px rgba(107, 39, 42, 0.2);
+        }
+
+        .latest-episode {
+            display: grid;
+            grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1.05fr);
+            gap: 42px;
+            align-items: center;
+            margin-bottom: 64px;
+            padding: clamp(28px, 4vw, 44px);
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 24px 55px rgba(18, 18, 18, 0.12);
+        }
+
+        .latest-thumbnail {
+            min-height: 330px;
+            border-radius: 8px;
+            background: url('https://i1.ytimg.com/vi/DfAGiqP77YM/hqdefault.jpg') center / cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .latest-thumbnail::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(18, 18, 18, 0), rgba(18, 18, 18, 0.28));
+        }
+
+        .latest-label {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .latest-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 4.6vw, 50px);
+            line-height: 1.18;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .latest-description {
+            color: var(--text-light);
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .podcast-content {
+            padding: 44px 0 76px;
+            background-color: var(--secondary);
+        }
+        
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .media-section + .media-section {
+            margin-top: 72px;
+        }
+
+        .embedded-player {
+            margin: 0 auto 42px;
+            max-width: 980px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 18px 42px rgba(18, 18, 18, 0.11);
+            overflow: hidden;
+        }
+
+        .embedded-player[hidden] {
+            display: none;
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #121212;
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .embedded-player-info {
+            padding: 22px 24px;
+        }
+
+        .embedded-player-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+
+        .embedded-player-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .player-youtube-link {
+            flex: 0 0 auto;
+            margin-top: 2px;
+            padding: 8px 13px;
+            font-size: 11px;
+        }
+
+        .episode-card {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .episode-card {
+            background-color: var(--primary);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .episode-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .episode-image {
+            height: 240px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        /* play-overlay removed */
+        
+        .episode-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .episode-content {
+            padding: 30px;
+        }
+        
+        .episode-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+        
+        .episode-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .episode-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .episode-host {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .episode-date {
+            color: var(--text-light);
+        }
+        
+        .listen-now {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            color: white;
+            border: 0;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .listen-now:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* Featured Player Section */
+        .featured-player {
+            background-color: var(--primary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .player-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--secondary);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .featured-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .featured-description {
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background-color: var(--accent-light);
+            transform: scale(1.1);
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: var(--border);
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 35%;
+            background-color: var(--accent);
+        }
+        
+        /* Connect Section */
+        .connect-section {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .connect-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .connect-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .platform-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-link {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .platform-link:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            color: #cccccc;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .episodes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .podcast-hero h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .latest-episode {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 20px;
+            }
+
+            .latest-thumbnail {
+                min-height: 240px;
+            }
+
+            .filter-btn {
+                min-width: 145px;
+                padding: 14px 24px;
+            }
+            
+            .connect-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .episode-content {
+                padding: 25px;
+            }
+            
+            .episode-title {
+                font-size: 20px;
+            }
+            
+            .player-controls {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .progress-bar {
+                width: 100%;
+            }
+            
+            .player-container {
+                padding: 30px 20px;
+            }
+
+            .embedded-player-heading {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .player-youtube-link {
+                width: max-content;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-container {
+                padding: 0 10px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .platform-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .podcast-platforms {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css?v=20260612">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Elections.html">Elections</a></li>
+                    <li><a href="Perspectives.html">Perspectives</a></li>
+                    <li><a href="Articles.html">Articles</a></li>
+                    <li><a href="Podcast.html" class="active">Podcast</a></li>
+                    
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+   
+
+    <!-- Podcast Hero Section -->
+    <section class="podcast-hero">
+        <div class="container">
+            <h1>The Angle Podcast</h1>
+            <p class="subtitle">Deep conversations with African innovators, technologists, and thought leaders shaping the continent's digital future</p>
+            
+            <div class="podcast-platforms">
+                <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-btn" target="_blank">
+                    <i class="fab fa-spotify"></i> Spotify
+                </a>
+                <a href="https://theangleafrica.substack.com/" class="platform-btn" target="_blank">
+                    <i class="fas fa-rss"></i> Substack
+                </a>
+                <a href="https://podcasts.apple.com" class="platform-btn" target="_blank">
+                    <i class="fas fa-podcast"></i> Apple Podcasts
+                </a>
+                <a href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" class="platform-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-youtube"></i> YouTube
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+   
+    <!-- Podcast Content Section -->
+    <section class="podcast-content">
+        <div class="container">
+            <div class="podcast-filters" aria-label="Podcast media filters">
+                <button class="filter-btn active" type="button" data-filter="podcast">Full Episodes</button>
+                <button class="filter-btn" type="button" data-filter="short">Shorts</button>
+            </div>
+
+            <section class="latest-episode" data-media-type="podcast" aria-labelledby="latest-episode-title">
+                <div class="latest-thumbnail" role="img" aria-label="The Angle Podcast episode thumbnail"></div>
+                <div class="latest-copy">
+                    <div class="latest-label">Latest Episode</div>
+                    <h2 class="latest-title" id="latest-episode-title">The Angle Podcast EP 47 | From Engineering Student to Building SA's Content Infrastructure</h2>
+                    <p class="latest-description">Ndivho Manginya, founder of Phanda Studios, joins The Angle to discuss content infrastructure, ownership, and Africa's digital future.</p>
+                    <button class="listen-now" type="button" data-video-id="DfAGiqP77YM" data-video-title="The Angle Podcast EP 47 | From Engineering Student to Building SA's Content Infrastructure" data-video-description="Ndivho Manginya joins The Angle to discuss content infrastructure, ownership, and Africa's digital future.">Watch Latest Episode</button>
+                </div>
+            </section>
+
+            <div class="embedded-player" id="embedded-player" hidden>
+                <div class="video-frame" id="video-frame"></div>
+                <div class="embedded-player-info">
+                    <div class="embedded-player-heading">
+                        <h3 id="player-title">Now Playing</h3>
+                        <a class="platform-link player-youtube-link" id="player-youtube-link" href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" target="_blank" rel="noopener">Open on YouTube</a>
+                    </div>
+                    <p id="player-description">The selected video is playing directly on The Angle Africa.</p>
+                </div>
+            </div>
+
+            <div class="media-section" data-media-section="podcast">
+                <h2 class="section-title">Full Episodes</h2>
+                <p class="section-subtitle">Full episodes from The Angle Podcast, embedded for direct viewing on the site.</p>
+                
+                <div class="episodes-grid" id="podcast-episodes-grid"></div>
+            </div>
+
+            <div class="media-section" data-media-section="short">
+                <h2 class="section-title">Shorts</h2>
+                <p class="section-subtitle">Short-form clips from recent conversations, grouped separately from full podcast episodes.</p>
+
+                <div class="episodes-grid">
+                    <article class="episode-card" data-media-type="short">
+                        <div class="episode-image" style="background-image: url('https://i2.ytimg.com/vi/mtc71S-nivE/hqdefault.jpg');">
+                            <div class="episode-category">Short</div>
+                        </div>
+                        <div class="episode-content">
+                            <h3 class="episode-title">Broadcast Van In A Box, This Tech Changes EVERYTHING!</h3>
+                            <div class="episode-meta">
+                                <span class="episode-host">The Angle</span>
+                                <span class="episode-date">Apr 28, 2026</span>
+                            </div>
+                            <p class="episode-excerpt">Ndivho Manginya of Phanda Studios unpacks the hidden infrastructure behind scalable content creation in Africa.</p>
+                            <button class="listen-now" type="button" data-video-id="mtc71S-nivE" data-video-title="Broadcast Van In A Box, This Tech Changes EVERYTHING!" data-video-description="A short clip on the hidden infrastructure behind scalable content creation in Africa.">Play Short</button>
+                        </div>
+                    </article>
+
+                    <article class="episode-card" data-media-type="short">
+                        <div class="episode-image" style="background-image: url('https://i3.ytimg.com/vi/R2uOULehgZI/hqdefault.jpg');">
+                            <div class="episode-category">Short</div>
+                        </div>
+                        <div class="episode-content">
+                            <h3 class="episode-title">Keep Data LOCAL & Get PAID FAIRLY | Content Creation Economy</h3>
+                            <div class="episode-meta">
+                                <span class="episode-host">The Angle</span>
+                                <span class="episode-date">Apr 23, 2026</span>
+                            </div>
+                            <p class="episode-excerpt">A clip on content ownership, data sovereignty, and why African creators need fairer digital economics.</p>
+                            <button class="listen-now" type="button" data-video-id="R2uOULehgZI" data-video-title="Keep Data LOCAL & Get PAID FAIRLY | Content Creation Economy" data-video-description="A short clip on content ownership, data sovereignty, and fairer creator economics.">Play Short</button>
+                        </div>
+                    </article>
+
+                    <article class="episode-card" data-media-type="short">
+                        <div class="episode-image" style="background-image: url('https://i2.ytimg.com/vi/m3GcGBKgrog/hqdefault.jpg');">
+                            <div class="episode-category">Short</div>
+                        </div>
+                        <div class="episode-content">
+                            <h3 class="episode-title">Empower Creators FIRST, Build Infrastructure Then Regulation After</h3>
+                            <div class="episode-meta">
+                                <span class="episode-host">The Angle</span>
+                                <span class="episode-date">Apr 21, 2026</span>
+                            </div>
+                            <p class="episode-excerpt">A sharp take on why creators need infrastructure, leverage, and ownership before regulation can truly help.</p>
+                            <button class="listen-now" type="button" data-video-id="m3GcGBKgrog" data-video-title="Empower Creators FIRST, Build Infrastructure Then Regulation After" data-video-description="A short clip on infrastructure, leverage, and creator ownership.">Play Short</button>
+                        </div>
+                    </article>
+
+                    <article class="episode-card" data-media-type="short">
+                        <div class="episode-image" style="background-image: url('https://i4.ytimg.com/vi/GPiwJ80JXiQ/hqdefault.jpg');">
+                            <div class="episode-category">Short</div>
+                        </div>
+                        <div class="episode-content">
+                            <h3 class="episode-title">The Power of a Shared Vision, Key To Startup Success</h3>
+                            <div class="episode-meta">
+                                <span class="episode-host">The Angle</span>
+                                <span class="episode-date">Apr 20, 2026</span>
+                            </div>
+                            <p class="episode-excerpt">A focused clip from the Phanda Studios conversation on alignment, team building, and startup momentum.</p>
+                            <button class="listen-now" type="button" data-video-id="GPiwJ80JXiQ" data-video-title="The Power of a Shared Vision, Key To Startup Success" data-video-description="A short clip on alignment, team building, and startup momentum.">Play Short</button>
+                        </div>
+                    </article>
+
+                    <article class="episode-card" data-media-type="short">
+                        <div class="episode-image" style="background-image: url('https://i1.ytimg.com/vi/tYcTdUHRTt4/hqdefault.jpg');">
+                            <div class="episode-category">Short</div>
+                        </div>
+                        <div class="episode-content">
+                            <h3 class="episode-title">If We Don't Build Infrastructure, We'll Always Be Users Of Big Tech</h3>
+                            <div class="episode-meta">
+                                <span class="episode-host">The Angle</span>
+                                <span class="episode-date">Apr 18, 2026</span>
+                            </div>
+                            <p class="episode-excerpt">A creator-economy clip about why African builders need to own more than just the content layer.</p>
+                            <button class="listen-now" type="button" data-video-id="tYcTdUHRTt4" data-video-title="If We Don't Build Infrastructure, We'll Always Be Users Of Big Tech" data-video-description="A short clip about why African builders need to own more than the content layer.">Play Short</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="platform-links" style="margin-top: 44px;">
+                <a href="Articles.html" class="platform-link">Browse All Articles</a>
+                <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-link" target="_blank">Listen on Spotify</a>
+            </div>
+        </div>
+    </section>
+    <!-- Connect Section -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title" style="color: black;">Listen & Connect</h2>
+            
+            <div class="connect-grid">
+                <div class="connect-card">
+                    <h3>Subscribe to Our Podcast</h3>
+                    <p>Never miss an episode. Subscribe on your favorite platform and get notified about new releases.</p>
+                    <div class="platform-links">
+                        <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-link" target="_blank">Spotify</a>
+                        <a href="https://theangleafrica.substack.com/" class="platform-link" target="_blank">Substack</a>
+                        <a href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" class="platform-link" target="_blank" rel="noopener">YouTube</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Newsletter Updates</h3>
+                    <p>Get episode summaries, exclusive content, and behind-the-scenes insights delivered to your inbox.</p>
+                    <div class="platform-links">
+                        <a href="https://theangleafrica.substack.com/?utm_source=global-search" class="platform-link" target="_blank">Subscribe to Newsletter</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Follow Our Conversations</h3>
+                    <p>Join the discussion on social media and connect with our community of innovators.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/TheAngle_Afrika" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/theangle.afrika/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/the-angle-africa" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@the.angle.podcast" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/people/The-Angle-Africa/61569042767052/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 41 Juta Street, Braamfontein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="assets/brand/angle_logo.png" alt="The Angle Africa" class="footer-logo"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                  
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="Elections.html">Elections</a></li>
+                        <li><a href="Perspectives.html">Perspectives</a></li>
+                        <li><a href="Articles.html">Articles</a></li>
+                        <li><a href="Podcast.html">Podcast</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein" target="_blank" rel="noopener">41 Juta Street, Braamfontein</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabText = tab.textContent.trim();
+                if (tabText === 'Home') {
+                    window.location.href = 'index.html';
+                } else if (tabText === 'About Us') {
+                    window.location.href = 'about-us.html';
+                } else if (tabText === 'Elections') {
+                    window.location.href = 'Elections.html';
+                } else if (tabText === 'Perspectives') {
+                    window.location.href = 'Perspectives.html';
+                }
+            });
+        });
+        
+        const podcastVideos = [
+            { id: 'DfAGiqP77YM', title: "The Angle Podcast EP 47 | From Engineering Student to Building SA’s Content Infrastructure", description: "Ndivho Manginya joins The Angle to discuss content infrastructure, ownership, and Africa's digital future." },
+            { id: 'isVLpcR6YYE', title: "The Angle Podcast EP 46 | From Township Streets to Tech Publishing - Philiso’s Journey" },
+            { id: 'plKV5LMsq3M', title: "The Angle Podcast EP 45 | Africa Talking is Building a Marketplace for the Next Generation of  Devs" },
+            { id: 'VokmlEDSnis', title: "The Angle Podcast EP44 | She built an AI platform to put African creators on the global brand table" },
+            { id: '-LpCFfUdgMo', title: "The Angle Podcast EP 43 | Build Your Brand, Then Scale: Marko Stavrou’s Founder Guide" },
+            { id: 'G3f86dQ78WU', title: "The Angle Podcast EP 42 | “Sell Intelligence, Not Raw Data” - Mark Nasila on Data Sovereignty" },
+            { id: 'lFAsS4Evo1c', title: "The Angle Podcast EP 41 | Every Industry Will Be Disrupted - Celiwe Ross on What Leaders Must Do Now" },
+            { id: 'I0Yl1C1y_4I', title: "The Angle Podcast EP 40 | Pay-on-Proof AI: How Isazi.ai Turned Clients into Evangelists" },
+            { id: 'LTjixWDXs-A', title: "The Angle Podcast EP 39 | Keeping African Agency in AI: Vukosi Marivate’s Call to Build" },
+            { id: 'qScfX4Y4avM', title: "The Angle Podcast EP 38 | Speed, Open Source, Ecosystems: The Faster Path to AI Value" },
+            { id: 'XoOQwHIIx38', title: "The Angle Podcast EP 37 | She Built an Earring That Fights Back: Hidden Camera + SOS" },
+            { id: '0hMhEr3W8hU', title: "The Angle Podcast EP 36 | From Hype to ROI - How to Make AI Actually Move the needle" },
+            { id: 'RziKee95L4g', title: "If Investors Don’t Understand the Opportunity, they Won’t Touch it  No Matter How Big it is.”" },
+            { id: '7z6c8978wDc', title: "The Angle Podcast EP 35 | Kojo Annan: What Really Kills Startups in Africa and How to Survive" },
+            { id: 'Pz-v9eMrzHs', title: "The Angle Podcast EP 34 | SA Is Not Ready for Climate Change, Insider on Risk, Data & Green Economy" },
+            { id: 'Yx5cK2uw-F0', title: "The Angle Podcast EP 33 | “Money Isn’t Real” - Penuel on Value, Community & SA’s Business Psyche" },
+            { id: 'xRfDhP5qiL8', title: "The Angle Podcast EP 32 | Inside iNKULU Creative’s Vision for AR-Driven Learning" },
+            { id: 'KVZyPD7YVzY', title: "The Angle Podcast EP 31 | Stage to Sandbox, Alby Michaels,Building Africa’s Leading Digital Festival" },
+            { id: 'xRfDhP5qiL8', title: "The Angle Podcast EP 32 | Inside iNKULU Creative’s Vision for AR-Driven Learning" },
+            { id: 'KVZyPD7YVzY', title: "The Angle Podcast EP 31 | Stage to Sandbox, Alby Michaels,Building Africa’s Leading Digital Festival" },
+            { id: 'kCiE2d3r7tg', title: "The Angle Podcast EP 30 | Gamification, Grit & Growth - Kim Chulu Amina" },
+            { id: '90A_6Kj62es', title: "The Angle Podcast EP 29 | Building Open Metaverse from Africa– Rick Treweek on Avatars, Worlds & Art" },
+            { id: 'yMMrUyo8cXs', title: "The Angle Podcast EP 28 | On the Metaverse Stage - Marinda Botha on VR Theatre and Storytelling" },
+            { id: 'mq03coWIwDo', title: "Landfill Dangers : The Shocking Reality of Waste Recycling!" },
+            { id: '2viS2q3b9wI', title: "The Angle Podcast EP 27 | How to Build a Startup That Fixes the System — Brendan Fernandez Shows How" },
+            { id: 'gLwAdl6zPh4', title: "The Angle Podcast EP 26 | No Bank, No Problem - How This App Is Changing Street Payments" },
+            { id: 'tznxbUxXYJA', title: "The Angle Podcast EP 25 | Digital Colonialism & Civic Tech | Power, Platforms, Policy" },
+            { id: 'MHYfsp3rfeE', title: "The Angle Podcast EP 24 |  SA is Leading the G20 – Can It Lead the Digital Revolution?" },
+            { id: '9E2ynFs9PUM', title: "The Angle Podcast EP 23 | Smart Cities or Digital Surveillance? | Tech, Trust & Governance" },
+            { id: 'kQEMEIRWzKU', title: "The Angle Podcast EP22 | Can SA Build a Tech Economy Without Big Tech? | Innovation, Policy & Power" },
+            { id: 'ZLiRJflVm3Y', title: "The Angle Podcast EP 21 | Why Your Internet Still Depends on Your Postal Code | SA's Digital Divide" },
+            { id: 'Om2BC4XOWnU', title: "Google Funds Media | AI can optimise newsrooms, and you can make some money still" },
+            { id: 'kbQTqUpYU6Y', title: "AI in News  Friend or Foe  The Future of Journalism!" },
+            { id: 'VqurKxrPyrk', title: "Is Google Helping or hurting online media?" },
+            { id: 'GRowT8d8rpg', title: "From Toys to Tech  One Game Dev's WILD Story!" },
+            { id: 'XvgucH7GeTA', title: "Is Saving the Planet Killing It  The Dark Side of Clean Tech" },
+            { id: 'EsGh3HTozyw', title: "Startup Funding & Media Revolution  Are You Ready For The Future" },
+            { id: '2V6PWpOH3e8', title: "True Cost  Phones, Burgers, and Saving the Planet It's Expensive!" },
+            { id: 'ZAdoVGVH6iQ', title: "Unlock Africa's Unicorn Potential  Capital, Policy, and Big Tech's Role" },
+            { id: 'vOx0JE8IgWk', title: "African Devs Hack Global Problems  Waste, Rhinos, & Woke Games!" },
+            { id: 'Kc9ErUa-VmA', title: "The Angle Podcast EP 20 | African game dev secrets - funding, marketing & sustainability" },
+            { id: 'Kc9ErUa-VmA', title: "The Angle Podcast EP 20 | African game dev secrets - funding, marketing & sustainability" },
+            { id: 'M4GoAfw_8_U', title: "The Angle Podcast EP 19 | Secrets to securing R5M in business grants | Lerato unpacks it" },
+            { id: 'kVB8WhnTvs0', title: "The Angle Podcast EP 18 | Disinformation, Big Tech, and the Fight for Digital Accountability" },
+            { id: 'nKQssQe_q8Y', title: "The Angle Podcast EP 17 | Twerking, Politics & Purpose - The wild world of Space Salad Studios" },
+            { id: '2WM1yo8tawg', title: "The Angle Podcast EP 16 | At 25, Nndwamato Manyanya Is Revolutionising Renewable Energy in Africa" },
+            { id: 'L40rZEQZI6k', title: "The Angle Podcast EP 15 | Innovative Tech Solutions with Thiba Mahlezana: AI, Robotics, and More" },
+            { id: 'Z4ky1VO30Hg', title: "The Angle Podcast EP 14 | Hands-On Learning: Kopano Makino on Revolutionising Education" },
+            { id: 'x0e9mWhuwPA', title: "The Angle Podcast EP 13 | Reflections on Future of Media, Sustainability and Digital Transformation" },
+            { id: '0nXH5l_qy38', title: "The Angle Podcast EP 12 |  Exploring the Future of XR in Africa with Dale Deacon" },
+            { id: 'IEkBz5Pt43U', title: "The Angle Podcast EP 11:  Driving Innovation and Inclusion | Mark Harris on Tech, Startups + Media" },
+            { id: '4h_Sl00XhKM', title: "The Angle Podcast EP 10 | Combating Misinformation with AI | Israel Olatunji Tijani" },
+            { id: 'WeF73Jq9Av4', title: "The Angle Podcast EP 8: Exploring Indie Gaming in South Africa with Kieran Reid" },
+            { id: 'Ty-k88YGjrA', title: "The Angle Podcast | Sh't left | Fak’ugesi Awards - Shining a spotlight on African digital creativity" },
+            { id: 'ZmPcUIvb-dc', title: "The Angle Podcast EP 7: Exploring Civic Tech | Urban Innovation  |Insights from Geci Karuri-Sebina" },
+            { id: 'YMdrPoJcTJQ', title: "The Angle Podcast EP 6: Fak'ugesi Revolutionising Digital Creativity in Africa | Eduardo Cachucho" },
+            { id: 'vrSyLv2sYew', title: "The Angle Podcast EP 5: African Startups - Funding Freefall, Corporate Clout,The Fight for Fair Play" },
+            { id: 'wtHEzgulig0', title: "Unlocking Investment in African Startups  Key Insights" },
+            { id: 'qOzjlAWfy48', title: "The Angle Podcast EP 4: Are locals drowning in the digital nomad wave?" },
+            { id: 'ObAu-IDPNnE', title: "The Angle Podcast EP 3: Whose agenda is being served by AI African data extraction? Data Capitalism?" },
+            { id: 'BP0S7VK4R8o', title: "The Angle Podcast; Digital Transformation, Africa, Tech" },
+            { id: 'dxWXfE8G9WU', title: "The Angle Podcast Ep 2:Financial Exclusion, Credit Score, Banks should lend money to poor people?" },
+            { id: 'GsGr19L9Cpk', title: "The Angle Podcast Ep 1: 90% of apps used in RSA are not locally made… due poor digital governance?" }
+        ];
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[character]));
+        }
+
+        function renderPodcastVideos() {
+            const podcastGrid = document.getElementById('podcast-episodes-grid');
+            if (!podcastGrid) return;
+
+            podcastGrid.innerHTML = podcastVideos.slice(1).map((video, index) => {
+                const archiveIndex = index + 2;
+                const number = String(archiveIndex).padStart(2, '0');
+                const title = video.title || `The Angle Podcast Archive Video ${number}`;
+                const description = video.description || 'A full podcast video from The Angle archive, listed from latest episode to earliest upload.';
+
+                return `
+                    <article class="episode-card" data-media-type="podcast">
+                        <div class="episode-image" style="background-image: url('https://i.ytimg.com/vi/${video.id}/hqdefault.jpg');">
+                            <div class="episode-category">Podcast</div>
+                        </div>
+                        <div class="episode-content">
+                            <h3 class="episode-title">${escapeHtml(title)}</h3>
+                            <div class="episode-meta">
+                                <span class="episode-host">The Angle</span>
+                                <span class="episode-date">Archive ${number}</span>
+                            </div>
+                            <p class="episode-excerpt">${escapeHtml(description)}</p>
+                            <button class="listen-now" type="button" data-video-id="${video.id}" data-video-title="${escapeHtml(title)}" data-video-description="${escapeHtml(description)}">Play Episode</button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        renderPodcastVideos();
+
+        const embeddedPlayer = document.getElementById('embedded-player');
+        const videoFrame = document.getElementById('video-frame');
+        const playerTitle = document.getElementById('player-title');
+        const playerDescription = document.getElementById('player-description');
+        const playerYoutubeLink = document.getElementById('player-youtube-link');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const mediaSections = document.querySelectorAll('[data-media-section]');
+        const latestEpisode = document.querySelector('.latest-episode');
+
+        function applyMediaFilter(filter) {
+            filterButtons.forEach(button => {
+                button.classList.toggle('active', button.dataset.filter === filter);
+                button.setAttribute('aria-pressed', button.dataset.filter === filter ? 'true' : 'false');
+            });
+
+            mediaSections.forEach(section => {
+                section.hidden = section.dataset.mediaSection !== filter;
+            });
+
+            if (latestEpisode) {
+                latestEpisode.hidden = filter !== 'podcast';
+            }
+
+            if (embeddedPlayer) embeddedPlayer.hidden = true;
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => applyMediaFilter(button.dataset.filter));
+        });
+
+        applyMediaFilter('podcast');
+
+        function youtubeEmbedUrl(videoId) {
+            return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+        }
+
+        function youtubeWatchUrl(videoId) {
+            return `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
+        }
+
+        function playVideoFromButton(button) {
+            const videoId = button.dataset.videoId;
+            const title = button.dataset.videoTitle || 'The Angle Video';
+            const description = button.dataset.videoDescription || 'Playing directly on The Angle Africa.';
+            if (!videoId || !embeddedPlayer || !videoFrame) return;
+
+            embeddedPlayer.hidden = false;
+            playerTitle.textContent = title;
+            playerDescription.textContent = description;
+            if (playerYoutubeLink) playerYoutubeLink.href = youtubeWatchUrl(videoId);
+            videoFrame.innerHTML = `<iframe src="${youtubeEmbedUrl(videoId)}" title="${escapeHtml(title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+            embeddedPlayer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.addEventListener('click', event => {
+            const button = event.target.closest('[data-video-id]');
+            if (!button) return;
+            event.preventDefault();
+            event.stopPropagation();
+            playVideoFromButton(button);
+        });
+
+        document.querySelectorAll('.episode-card').forEach(card => {
+            const button = card.querySelector('[data-video-id]');
+            if (!button) return;
+
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+
+            card.addEventListener('click', event => {
+                if (event.target.closest('button, a')) return;
+                playVideoFromButton(button);
+            });
+
+            card.addEventListener('keydown', event => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                event.preventDefault();
+                playVideoFromButton(button);
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="js/mobile.js?v=20260604"></script>
+</body>
+</html>

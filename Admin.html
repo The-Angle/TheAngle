@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | The Angle Africa</title>
+    <link rel="icon" type="image/png" href="Logo-1-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/responsive.css?v=20260612">
+    <style>
+        :root {
+            --primary: #121212;
+            --accent: #6b272a;
+            --angle-gold: #c9a34e;
+            --angle-maroon: #4b1f22;
+            --angle-teal: var(--angle-maroon);
+            --light: #f8f5ef;
+            --muted: #68625c;
+            --border: rgba(107, 39, 42, 0.15);
+            --shadow: 0 18px 45px rgba(18, 18, 18, 0.10);
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            background: #F5F5F5;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 250, 243, 0.94);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+        }
+
+        .header-container {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        nav a.active,
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .subscribe-btn,
+        .mobile-menu-btn {
+            border: 0;
+            cursor: pointer;
+        }
+
+        .subscribe-btn {
+            background: var(--accent);
+            border-radius: 999px;
+            padding: 10px 18px;
+        }
+
+        .subscribe-btn a {
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .admin-shell {
+            padding: 42px 0 70px;
+        }
+
+        .admin-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .admin-hero:has(+ .login-panel:not([hidden])) {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .admin-hero.login-mode {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .admin-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4.4rem);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .admin-hero p,
+        .login-panel p,
+        .admin-panel p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .admin-top-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+
+        .login-panel,
+        .admin-panel {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        .login-panel {
+            width: min(100%, 460px);
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .admin-panel h2,
+        .login-panel h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .cms-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .cms-tab {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--primary);
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.84rem;
+            font-weight: 900;
+            padding: 10px 8px;
+        }
+
+        .cms-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .cms-tab-panel {
+            display: grid;
+            gap: 16px;
+        }
+
+        .cms-field-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .field {
+            display: grid;
+            gap: 7px;
+        }
+
+        .field label {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--primary);
+            font: inherit;
+            padding: 12px 13px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .admin-button,
+        .admin-card-actions button,
+        .file-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 800;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
+        .admin-button.primary {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--accent), var(--angle-maroon));
+            color: #fff;
+        }
+
+        .admin-button.ghost {
+            background: rgba(107, 39, 42, 0.07);
+        }
+
+        .admin-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .file-button input {
+            display: none;
+        }
+
+        .field-hint {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .field-counter {
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            justify-self: end;
+        }
+
+        .file-name {
+            color: var(--accent);
+            font-size: 0.86rem;
+            font-weight: 800;
+        }
+
+        .status-message {
+            min-height: 24px;
+            color: var(--accent);
+            font-weight: 800;
+            margin-top: 14px;
+        }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            align-items: start;
+            margin-top: 0;
+        }
+
+        .admin-top-grid > .management-grid {
+            display: contents;
+        }
+
+        .posts-panel {
+            margin-top: 24px;
+        }
+
+        .posts-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .posts-search-controls {
+            display: grid;
+            grid-template-columns: minmax(120px, 150px) minmax(210px, 1fr) auto;
+            gap: 10px;
+            align-items: end;
+            min-width: min(100%, 460px);
+        }
+
+        .admin-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .admin-list-card {
+            display: grid;
+            gap: 8px;
+            padding: 14px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .admin-list-card header {
+            position: static;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: transparent;
+            border: 0;
+            backdrop-filter: none;
+        }
+
+        .admin-list-card h3 {
+            font-size: 1rem;
+        }
+
+        .admin-list-card p {
+            color: var(--muted);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .small-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .small-actions button {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--primary);
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: 900;
+            padding: 7px 10px;
+        }
+
+        .small-actions .danger {
+            color: #a61b25;
+        }
+
+        .author-preview {
+            display: grid;
+            grid-template-columns: 58px minmax(0, 1fr);
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            background: rgba(107, 39, 42, 0.06);
+            border: 1px solid rgba(107, 39, 42, 0.14);
+            border-radius: 8px;
+        }
+
+        .author-preview img {
+            width: 58px;
+            height: 58px;
+            border-radius: 999px;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .author-preview strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .tag-checklist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .tag-checklist label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            width: auto;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(107, 39, 42, 0.07);
+            color: var(--primary);
+            font-size: 0.84rem;
+            font-weight: 900;
+        }
+
+        .tag-checklist input {
+            width: auto;
+        }
+
+        .storage-warning {
+            display: none;
+            background: rgba(107, 39, 42, 0.08);
+            border: 1px solid rgba(107, 39, 42, 0.22);
+            border-left: 5px solid var(--accent);
+            border-radius: 8px;
+            color: var(--text);
+            font-weight: 700;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            padding: 18px 20px;
+        }
+
+        .storage-warning.active {
+            display: block;
+        }
+
+        .storage-warning a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .posts-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .admin-post-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 18px;
+            padding: 18px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .admin-post-card h3 {
+            font-size: 1.1rem;
+            margin: 8px 0;
+        }
+
+        .admin-post-card p {
+            max-width: 65ch;
+        }
+
+        .admin-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            border-radius: 999px;
+            background: rgba(18, 18, 18, 0.08);
+            color: var(--primary);
+            font-size: 0.74rem;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            padding: 5px 9px;
+            text-transform: uppercase;
+        }
+
+        .status-pill.published {
+            background: rgba(15, 118, 110, 0.12);
+            color: var(--angle-teal);
+        }
+
+        .admin-card-actions {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .admin-card-actions .danger {
+            color: #a61b25;
+        }
+
+        .delete-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: rgba(18, 18, 18, 0.48);
+        }
+
+        .delete-dialog {
+            width: min(100%, 420px);
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 24px 60px rgba(18, 18, 18, 0.22);
+            padding: 26px;
+        }
+
+        .delete-dialog h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            margin-bottom: 10px;
+        }
+
+        .delete-dialog p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .delete-dialog .button-row {
+            justify-content: flex-end;
+        }
+
+        .admin-button.danger {
+            background: #a61b25;
+            border-color: #a61b25;
+            color: #fff;
+        }
+
+        .empty-state {
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            color: var(--muted);
+            padding: 24px;
+            margin-top: 18px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 860px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                padding: 18px 24px;
+                background: #fffaf3;
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.open ul,
+            nav.active ul {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+
+            .admin-top-grid,
+            .management-grid,
+            .admin-post-card,
+            .cms-field-row {
+                grid-template-columns: 1fr;
+            }
+
+            .posts-header {
+                flex-direction: column;
+            }
+
+            .posts-search-controls {
+                grid-template-columns: 1fr;
+                min-width: 0;
+                width: 100%;
+            }
+
+            .admin-hero {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .admin-tools {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Elections.html">Elections</a></li>
+                    <li><a href="Perspectives.html">Perspectives</a></li>
+                    <li><a href="Articles.html">Articles</a></li>
+                    <li><a href="Podcast.html">Podcast</a></li>
+                    <li><a href="Admin.html" class="active">Admin</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-shell">
+        <div class="container">
+            <div class="storage-warning" id="storage-warning">
+                Admin is open from your file explorer. Posts saved here cannot appear on the website pages. Start <code>start-admin-server.bat</code>, then open <a href="http://127.0.0.1:8000/Admin.html">http://127.0.0.1:8000/Admin.html</a> and publish from there.
+            </div>
+
+            <section class="admin-hero">
+                <div>
+                    <h1>Admin</h1>
+                    <p>Create, draft, and publish new stories into the site preview.</p>
+                </div>
+                <div class="admin-tools" id="dashboard-tools" hidden>
+                    <button class="admin-button ghost" id="export-posts" type="button"><i class="fas fa-download"></i>Export</button>
+                    <label class="file-button"><i class="fas fa-upload"></i>Import JSON<input type="file" id="import-posts" accept="application/json,.json"></label>
+                    <button class="admin-button" id="logout" type="button"><i class="fas fa-right-from-bracket"></i>Logout</button>
+                </div>
+            </section>
+
+            <section class="login-panel" id="login-view">
+                <h2>Admin Login</h2>
+                <p>Sign in to manage drafts and published stories.</p>
+                <form id="login-form" class="form-grid">
+                    <div class="field">
+                        <label for="admin-pin">Admin PIN</label>
+                        <input id="admin-pin" type="password" autocomplete="current-password" required>
+                    </div>
+                    <button class="admin-button primary" type="submit"><i class="fas fa-lock-open"></i>Login</button>
+                </form>
+                <div class="status-message" id="status-message" aria-live="polite"></div>
+            </section>
+
+            <section id="dashboard-view" hidden>
+                <div class="admin-top-grid">
+                    <section class="admin-panel">
+                        <h2 id="form-title">Create Post</h2>
+                        <p>Published posts appear first on Articles and in the homepage Featured Stories preview.</p>
+                        <div class="cms-tabs" role="tablist" aria-label="Post editor sections">
+                            <button class="cms-tab active" id="tab-basic" type="button" role="tab" aria-selected="true" aria-controls="panel-basic" data-tab-target="basic">Basic</button>
+                            <button class="cms-tab" id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" data-tab-target="media">Media</button>
+                            <button class="cms-tab" id="tab-tags" type="button" role="tab" aria-selected="false" aria-controls="panel-tags" data-tab-target="tags">Tags</button>
+                            <button class="cms-tab" id="tab-seo" type="button" role="tab" aria-selected="false" aria-controls="panel-seo" data-tab-target="seo">SEO</button>
+                        </div>
+                        <form id="post-form" class="form-grid" novalidate>
+                            <input type="hidden" id="post-id">
+                            <section class="cms-tab-panel" id="panel-basic" role="tabpanel" aria-labelledby="tab-basic" data-tab-panel="basic">
+                                <div class="field">
+                                    <label for="post-title">Headline</label>
+                                    <input id="post-title" type="text" maxlength="100" required>
+                                    <span class="field-counter" data-counter-for="post-title">0/100</span>
+                                </div>
+                                <div class="field">
+                                    <label for="post-slug">Slug</label>
+                                    <input id="post-slug" type="text" required>
+                                    <span class="field-hint">Auto-filled from the headline, editable, and kept URL-safe.</span>
+                                </div>
+                                <div class="cms-field-row">
+                                    <div class="field">
+                                        <label for="post-author">Author</label>
+                                        <select id="post-author" required>
+                                            <option value="">Choose an author</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="post-category">Category</label>
+                                        <select id="post-category" required>
+                                            <option>Main</option>
+                                            <option>Articles</option>
+                                            <option>Perspectives</option>
+                                            <option>Elections</option>
+                                            <option>Podcast</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="cms-field-row">
+                                    <div class="field">
+                                        <label for="post-date">Publish Date</label>
+                                        <input id="post-date" type="date" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="post-status">Status</label>
+                                        <select id="post-status">
+                                            <option value="draft">Draft</option>
+                                            <option value="published">Published</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="post-excerpt">Excerpt</label>
+                                    <textarea id="post-excerpt" required></textarea>
+                                </div>
+                                <div class="field">
+                                    <label>Saved Author Details</label>
+                                    <div class="author-preview" id="post-author-preview">
+                                        <img src="assets/svg/author-placeholder.svg" alt="">
+                                        <div>
+                                            <strong>No author selected</strong>
+                                            <p class="field-hint">Select an author to attach their email, bio, and picture to this article.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="cms-tab-panel" id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-tab-panel="media" hidden>
+                                <div class="field">
+                                    <label for="post-image-file">Featured Image</label>
+                                    <input id="post-image-file" type="file" accept="image/svg+xml,image/png,image/jpeg,image/webp,image/gif,.svg">
+                                    <span class="field-hint">SVG is preferred. Use PNG, JPG, WEBP, or GIF only for photographic images that cannot realistically be SVG. Keep it under 3MB.</span>
+                                    <span class="file-name" id="post-image-file-name"></span>
+                                </div>
+                                <div class="field">
+                                    <label for="post-image-alt">Featured Image Alt Text</label>
+                                    <input id="post-image-alt" type="text" maxlength="140">
+                                    <span class="field-counter" data-counter-for="post-image-alt">0/140</span>
+                                </div>
+                                <div class="field">
+                                    <label for="post-video">YouTube Video URL</label>
+                                    <input id="post-video" type="text" placeholder="https://youtu.be/...">
+                                    <span class="field-hint">Optional. Paste a YouTube watch, shorts, embed, or youtu.be link to show the video on the article page.</span>
+                                </div>
+                                <div class="field">
+                                    <label for="post-content">Body</label>
+                                    <textarea id="post-content" required placeholder="Write or update the full article content."></textarea>
+                                </div>
+                                <div class="field">
+                                    <label for="post-url">External Read URL</label>
+                                    <input id="post-url" type="text" placeholder="https://...">
+                                    <span class="field-hint">Leave this empty for normal articles. The site will open them with Article.html automatically.</span>
+                                </div>
+                                <div class="field">
+                                    <label for="post-pdf">PDF Document</label>
+                                    <input id="post-pdf" type="file" accept="application/pdf,.pdf">
+                                    <span class="field-hint">Use this for article PDFs. The Import JSON button above is only for restoring exported admin data.</span>
+                                    <span class="file-name" id="post-pdf-name"></span>
+                                </div>
+                            </section>
+
+                            <section class="cms-tab-panel" id="panel-tags" role="tabpanel" aria-labelledby="tab-tags" data-tab-panel="tags" hidden>
+                                <div class="field">
+                                    <label>Article Tags</label>
+                                    <div class="tag-checklist" id="post-tags-list"></div>
+                                    <span class="field-hint">Create tags in Tag Management below, then select the tags that should display this article in tagged areas.</span>
+                                </div>
+                            </section>
+
+                            <section class="cms-tab-panel" id="panel-seo" role="tabpanel" aria-labelledby="tab-seo" data-tab-panel="seo" hidden>
+                                <div class="field">
+                                    <label for="post-meta-title">Meta Title</label>
+                                    <input id="post-meta-title" type="text" maxlength="60" required>
+                                    <span class="field-counter" data-counter-for="post-meta-title">0/60</span>
+                                </div>
+                                <div class="field">
+                                    <label for="post-meta-description">Meta Description</label>
+                                    <textarea id="post-meta-description" maxlength="160" required></textarea>
+                                    <span class="field-counter" data-counter-for="post-meta-description">0/160</span>
+                                </div>
+                            </section>
+
+                            <div class="button-row">
+                                <button class="admin-button primary" type="submit"><i class="fas fa-paper-plane"></i>Save Post</button>
+                                <button class="admin-button ghost" id="save-draft" type="button"><i class="fas fa-floppy-disk"></i>Save Draft</button>
+                                <button class="admin-button" id="reset-form" type="button"><i class="fas fa-plus"></i>New</button>
+                            </div>
+                        </form>
+                        <div class="status-message" aria-live="polite"></div>
+                    </section>
+
+                    <div class="management-grid">
+                    <section class="admin-panel">
+                        <h2>Authors</h2>
+                        <p>Create reusable author profiles for article publishing.</p>
+                        <form id="author-form" class="form-grid" novalidate>
+                            <input type="hidden" id="author-id">
+                            <div class="field">
+                                <label for="author-name">Author Name</label>
+                                <input id="author-name" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="author-email">Author Email</label>
+                                <input id="author-email" type="email" required>
+                            </div>
+                            <div class="field">
+                                <label for="author-bio">Author Bio</label>
+                                <textarea id="author-bio" required></textarea>
+                            </div>
+                            <div class="field">
+                                <label for="author-picture">Author Picture</label>
+                                <input id="author-picture" type="file" accept="image/svg+xml,image/png,image/jpeg,image/webp,.svg">
+                                <span class="field-hint">SVG is preferred. Use raster only for real portrait photos.</span>
+                                <span class="file-name" id="author-picture-name"></span>
+                            </div>
+                            <div class="button-row">
+                                <button class="admin-button primary" type="submit"><i class="fas fa-user-check"></i>Save Author</button>
+                                <button class="admin-button" id="reset-author" type="button"><i class="fas fa-plus"></i>New</button>
+                            </div>
+                        </form>
+                        <div class="admin-list" id="authors-list"></div>
+                    </section>
+
+                    <section class="admin-panel">
+                        <h2>Homepage Headlines</h2>
+                        <p>Edit homepage headline text without touching HTML.</p>
+                        <form id="homepage-form" class="form-grid" novalidate>
+                            <div class="field">
+                                <label for="home-hero-category">Hero Category</label>
+                                <input id="home-hero-category" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="home-hero-kicker">Hero Kicker</label>
+                                <input id="home-hero-kicker" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="home-hero-title">Hero Headline</label>
+                                <textarea id="home-hero-title" required></textarea>
+                            </div>
+                            <div class="cms-field-row">
+                                <div class="field">
+                                    <label for="home-hero-author">Hero Author</label>
+                                    <input id="home-hero-author" type="text">
+                                </div>
+                                <div class="field">
+                                    <label for="home-hero-date">Hero Date</label>
+                                    <input id="home-hero-date" type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="home-hero-excerpt">Hero Excerpt</label>
+                                <textarea id="home-hero-excerpt" required></textarea>
+                            </div>
+                            <div class="field">
+                                <label for="home-hero-url">Hero Link</label>
+                                <input id="home-hero-url" type="text" required>
+                            </div>
+                            <div class="cms-field-row">
+                                <div class="field">
+                                    <label for="home-featured-title">Featured Stories Title</label>
+                                    <input id="home-featured-title" type="text" required>
+                                </div>
+                                <div class="field">
+                                    <label for="home-podcast-title">Podcast Title</label>
+                                    <input id="home-podcast-title" type="text" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="home-podcast-subtitle">Podcast Subtitle</label>
+                                <textarea id="home-podcast-subtitle" required></textarea>
+                            </div>
+                            <button class="admin-button primary" type="submit"><i class="fas fa-heading"></i>Save Headlines</button>
+                        </form>
+                    </section>
+
+                    <section class="admin-panel">
+                        <h2>Tags</h2>
+                        <p>Create tags and use them from the article editor.</p>
+                        <form id="tag-form" class="form-grid" novalidate>
+                            <input type="hidden" id="tag-id">
+                            <div class="field">
+                                <label for="tag-name">Tag Name</label>
+                                <input id="tag-name" type="text" required>
+                            </div>
+                            <div class="button-row">
+                                <button class="admin-button primary" type="submit"><i class="fas fa-tag"></i>Save Tag</button>
+                                <button class="admin-button" id="reset-tag" type="button"><i class="fas fa-plus"></i>New</button>
+                            </div>
+                        </form>
+                        <div class="admin-list" id="tags-list"></div>
+                    </section>
+                    </div>
+                </div>
+
+                <section class="admin-panel posts-panel">
+                    <div class="posts-header">
+                        <div>
+                            <h2>Posts</h2>
+                            <p>Manage drafts and published stories stored in this browser.</p>
+                        </div>
+                        <div class="posts-search-controls">
+                            <div class="field">
+                                <label for="posts-search-type">Search By</label>
+                                <select id="posts-search-type">
+                                    <option value="author">Author</option>
+                                    <option value="date">Date</option>
+                                </select>
+                            </div>
+                            <div class="field" id="posts-search-text-field">
+                                <label for="posts-search">Search Articles</label>
+                                <input id="posts-search" type="search" placeholder="Type author name">
+                            </div>
+                            <div class="field" id="posts-search-date-field" hidden>
+                                <label for="posts-search-date">Search Date</label>
+                                <input id="posts-search-date" type="date">
+                            </div>
+                            <button class="admin-button" id="clear-posts-search" type="button"><i class="fas fa-xmark"></i>Clear</button>
+                        </div>
+                    </div>
+                    <div id="empty-state" class="empty-state">No admin posts yet.</div>
+                    <div class="posts-list" id="posts-list"></div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <div class="delete-modal" id="delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-title" hidden>
+        <div class="delete-dialog">
+            <h2 id="delete-title">Delete Article?</h2>
+            <p>This will permanently remove the article from the admin storage and frontend display.</p>
+            <div class="button-row">
+                <button class="admin-button" id="cancel-delete" type="button">Cancel</button>
+                <button class="admin-button danger" id="confirm-delete" type="button"><i class="fas fa-trash"></i>Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js?v=20260610source"></script>
+    <script src="js/mobile.js?v=20260604"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "preferredFormat": "svg",
+  "updatedAt": "2026-06-15",
+  "convertedOrReplacedWithSvg": [
+    "Reusable category and placeholder artwork -> assets/svg/*.svg"
+  ],
+  "keptOriginalBecauseVectorConversionWouldNotBeRealistic": [
+    "Original brand logo files Logo-1-removebg-preview.png and assets/brand/angle_logo.png, restored to preserve the existing brand presentation",
+    "Photographic article images under assets/articles/*.jpeg",
+    "Photographic hero images under assets/hero/*.png",
+    "Remote Unsplash image URLs used as photographic editorial fallbacks"
+  ],
+  "adminPolicy": "New admin uploads accept SVG first and still allow raster photos when the content is photographic or cannot realistically be represented as SVG."
+}

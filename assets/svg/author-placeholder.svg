@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Author portrait placeholder</title>
+  <desc id="desc">A simple vector portrait placeholder.</desc>
+  <rect width="240" height="240" rx="120" fill="#f8f5ef"/>
+  <circle cx="120" cy="86" r="42" fill="#6b272a"/>
+  <path d="M48 204c10-45 38-67 72-67s62 22 72 67" fill="#c9a34e"/>
+  <path d="M54 205c14-34 38-51 66-51s52 17 66 51" fill="#4b1f22" opacity=".9"/>
+</svg>

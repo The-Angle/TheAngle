@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perspectives | The Angle Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #6b272a;
+            --accent-light: #8a3a3d;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --header-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Tabs Navigation */
+        .tabs-section {
+            background-color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .tabs-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .tabs-container::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--accent);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        /* Hero Section */
+        
+        .perspectives-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--accent-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .perspectives-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .perspectives-hero .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .perspectives-content {
+            padding: 60px 0;
+            background-color: var(--secondary);
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            background-color: var(--primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .article-image {
+            height: 220px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .article-content {
+            padding: 30px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+        
+        .article-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .article-date {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--accent-light);
+            border-bottom-color: var(--accent-light);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* Connect Section */
+        .connect-section {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .connect-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .connect-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .platform-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .platform-link {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .platform-link:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            color: #cccccc;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--accent);
+            width: 16px;
+            margin-top: 3px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .perspectives-hero h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .connect-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-content {
+                padding: 20px;
+            }
+            
+            .article-title {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-container {
+                padding: 0 10px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .platform-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><img src="Logo-1-removebg-preview.png" alt="The Angle Africa"></div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Elections.html">Elections</a></li>
+                    <li><a href="Perspectives.html" class="active">Perspectives</a></li>
+                    <li><a href="Articles.html">Articles</a></li>
+                    <li><a href="Podcast.html">Podcast</a></li>
+                 
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                
+                <button class="subscribe-btn"><a href="https://theangleafrica.substack.com/?utm_source=global-search">Subscribe</a></button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+    
+    <!-- Perspectives Hero Section -->
+    <section class="perspectives-hero">
+        <div class="container">
+            <h1>Perspectives</h1>
+            <p class="subtitle">Thoughtful analysis and expert insights on Africa's digital transformation, technology trends, and the intersection of innovation and society</p>
+        </div>
+    </section>
+
+    <!-- Perspectives Content Section -->
+    <section class="perspectives-content">
+        <div class="container">
+
+            <p class="section-subtitle">Dive deep into expert analysis, thought leadership, and critical perspectives on Africa's digital future, emerging technologies, and societal transformation.</p>
+            
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Africa's digital future: The battle for control over Internet infrastructure and data</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Stanley Moloto</span>
+                            <span class="article-date">Nov 18, 2024</span>
+                        </div>
+                        <p class="article-excerpt">As Africa's internet connectivity expands, the continent stands on the threshold of immense digital potential. Internet infrastructure, driven by undersea cables and data centers, is reshaping economies.</p>
+                        <a href="Perspectives/Infrastrature.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1676299081847-824916de030a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Treat your AI like a toddler</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Clint Payne</span>
+                            <span class="article-date">Sep 30, 2024</span>
+                        </div>
+                        <p class="article-excerpt">It's impossible not have had a conversation about Artificial Intelligence (AI). Whether it's a conversation about job prospects, what it means for the future, or how to use it effectively.</p>
+                        <a href="Perspectives/AI.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">AI is driving data centre growth in Africa</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Juanita Clark</span>
+                            <span class="article-date">Sep 2, 2024</span>
+                        </div>
+                        <p class="article-excerpt">The data centre industry in Africa is experiencing exponential growth, driven by advancements in artificial intelligence, cloud services, and various digital transformation initiatives.</p>
+                        <a href="Perspectives/Data.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 4 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1573164713712-03790a178651?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Africa's data centre market and digital transformation pathways</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Chudi Okoye</span>
+                            <span class="article-date">Sep 2, 2024</span>
+                        </div>
+                        <p class="article-excerpt">Africa's data centre (DC) market and its evolving digital landscape present a dynamic picture of both immense potential and pressing challenges that require strategic navigation.</p>
+                        <a href="Perspectives/Market.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 5 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Data centres are catalysts for accelerating Africa's digital growth</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Chudi Okoye</span>
+                            <span class="article-date">Sep 2, 2024</span>
+                        </div>
+                        <p class="article-excerpt">Africa's digital transformation is progressing steadily, but there is significant room for growth, especially in the data centre (DC) market.</p>
+                        <a href="Perspectives/growth.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 6 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Unlocking Africa's digital potential: Addressing challenges and charting a path forward</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Chudi Okoye</span>
+                            <span class="article-date">Sep 2, 2024</span>
+                        </div>
+                        <p class="article-excerpt">As Africa embraces the digital age, the growth of data centres (DCs) stands at the forefront of technological advancement. These infrastructure hubs are crucial for supporting digital services.</p>
+                        <a href="Perspectives/Unlocking.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Article 7 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Whose agenda is being served by the dynamics surrounding AI African data extraction?</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Stanley Moloto</span>
+                            <span class="article-date">Apr 23, 2024</span>
+                        </div>
+                        <p class="article-excerpt">The more AI disappears into invisibility, the further it entangles us in its underlying machinations, alongside the corporate and political interests that govern its development.</p>
+                        <a href="Perspectives/agenda.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Article 8 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Is mobile money the answer to financial inclusion in Sub-Saharan Africa?</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Stanley Moloto</span>
+                            <span class="article-date">Feb 19, 2024</span>
+                        </div>
+                        <p class="article-excerpt">The increased adoption of the latest digital technologies in developing countries has heightened speculation and optimism concerning bridging the gap in financial inclusion.</p>
+                        <a href="Perspectives/money.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Article 9 -->
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="article-category">Perspectives</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Digital pervasiveness and divisiveness: The role of African governments</h3>
+                        <div class="article-meta">
+                            <span class="article-author">Iman Bashir</span>
+                            <span class="article-date">Feb 19, 2024</span>
+                        </div>
+                        <p class="article-excerpt">A vision for a digital African future In 2021, the African Digital Futures Project, an initiative and practice arm of the Centre for Creative Arts examined digital transformation challenges.</p>
+                        <a href="Perspectives/Role.html" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title" style="color: black;">Connect With Us</h2>
+            
+            <div class="connect-grid">
+                <div class="connect-card">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest insights on African digital culture, creativity, and innovation.</p>
+                    <div class="platform-links">
+                        <a href="https://theangleafrica.substack.com/?utm_source=global-search" class="platform-link" target="_blank">Subscribe to Newsletter</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Listen to Our Podcast</h3>
+                    <p>Available on all major podcast platforms</p>
+                    <div class="platform-links">
+                        <a href="https://open.spotify.com/show/2ScSSilPfkwK0DgXZDQR07" class="platform-link" target="_blank">Spotify</a>
+                        <a href="https://www.youtube.com/channel/UCf7AJTPSVYzddYLylpfzmDQ" class="platform-link" target="_blank">YouTube</a>
+                        <a href="https://theangleafrica.substack.com/" class="platform-link" target="_blank">Substack</a>
+                    </div>
+                </div>
+                
+                <div class="connect-card">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected on social media</p>
+                    <div class="social-links">
+                        <a href="https://x.com/TheAngle_Afrika" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/theangle.afrika/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/the-angle-africa" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@the.angle.podcast" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/people/The-Angle-Africa/61569042767052/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 41 Juta Street, Braamfontein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><img src="Logo-1-removebg-preview.png" alt="The Angle Africa" style="height: 40px; width: auto;"></h3>
+                    <p style="color: #cccccc; margin-bottom: 20px;">Delivering accurate, timely, and impactful news from Africa and around the world. Our mission is to inform, educate, and inspire.</p>
+                  
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="Elections.html">Elections</a></li>
+                        <li><a href="Perspectives.html">Perspectives</a></li>
+                        <li><a href="Articles.html">Articles</a></li>
+                        <li><a href="Podcast.html">Podcast</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company footer column removed -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#">41 Juta Street, Braamfontein</a></li>
+                        <!-- email removed -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 The Angle Africa. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth <= 768) {
+                if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabText = tab.textContent.trim();
+                if (tabText === 'Home') {
+                    window.location.href = 'index.html';
+                } else if (tabText === 'About Us') {
+                    window.location.href = 'about-us.html';
+                } else if (tabText === 'Elections') {
+                    window.location.href = 'Elections.html';
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>
